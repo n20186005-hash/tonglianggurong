@@ -1,37 +1,70 @@
 ---
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
-import { site } from "../data/place";
+import { site, place } from "../data/place";
 ---
 
 <ArticleLayout
-  title="關於通樑古榕"
+  title="關於通樑古榕（通梁古榕）｜網站說明"
   eyebrow="About"
-  subtitle="我們把通樑古榕與澎湖北環的實用資訊整理成一站，讓你出發前就能規劃好行程。"
-  description="關於通樑古榕網站：我們整理通樑古榕的交通、氣根景觀、保安宮歷史、拍照與澎湖北環行程資訊，目標是成為澎湖北環的實用旅遊入口。"
+  subtitle="非營利科普網站，把通樑古榕（通梁古榕）與澎湖北環的實用資訊整理成一站。"
+  description="關於通樑古榕（通梁古榕）網站：非營利科普性質，整理通樑古榕的交通、氣根景觀、保安宮歷史、拍照與澎湖北環行程資訊。"
   path="/about/"
+  robots="noindex, follow"
 >
   <p>
-    <strong>通樑古榕（Tongliang Great Banyan）</strong>是澎湖白沙鄉最具代表性的自然與人文地標。我們建立這個網站，是希望把散落各處的資訊——交通、停車、氣根景觀、保安宮歷史、拍照位置與北環行程——整理成清楚、好讀、實用的一站式指南。
+    <strong>通樑古榕（Tongliang Great Banyan）</strong>是澎湖白沙鄉最具代表性的自然與人文地標。
+    我們建立這個網站，是希望把散落各處的資訊——交通、停車、氣根景觀、保安宮歷史、拍照位置、北環行程、
+    季度氣候策略與訪客服務——整理成<strong>清楚、好讀、實用</strong>的一站式指南。
+  </p>
+
+  <h2>我們是誰</h2>
+  <p>
+    本網站為<strong>非營利科普性質</strong>，由關心澎湖地方文史與自然生態的志工共同維護。
+    我們不售票、不導覽、不接受商家業配，<strong>不推薦特定商家名稱</strong>，
+    站內提及的服務類型（如餐飲、住宿、加油、充電）僅供旅客識別用途。
   </p>
 
   <h2>我們想做的事</h2>
   <ul>
-    <li>用清楚的中文，說明通樑古榕值不值得去、怎麼安排。</li>
+    <li>用清楚的中文，說明{place.name}值不值得去、怎麼安排。</li>
     <li>把古榕放進<strong>澎湖北環</strong>的完整路線，讓行程更順。</li>
-    <li>照顧自由行、機車環島、親子與長輩、攝影文化等不同旅客的需求。</li>
-    <li>對於樹齡等有爭議的資訊，如實標示為地方傳說與歷史推測。</li>
+    <li>照顧自由行、機車環島、親子、長輩、攝影文化等不同旅客的需求。</li>
+    <li>對於樹齡等有爭議的資訊，如實標示為「地方傳說與歷史推測」。</li>
+    <li>把<strong>氣象、水文、人潮、節慶</strong>整合為季度遊覽策略。</li>
+    <li>提供即時氣象與七日預報，方便旅客判斷是否攜帶雨具。</li>
   </ul>
+
+  <h2>內容五大支柱</h2>
+  <ol>
+    <li><strong>地標導覽</strong>：古榕的歷史、氣根生態、與通樑保安宮的共生。</li>
+    <li><strong>行程規劃</strong>：半日、全日北環路線與按人群定制的方案。</li>
+    <li><strong>氣象與季節</strong>：即時天氣與 12 月氣候分析。</li>
+    <li><strong>訪客服務</strong>：WC、停車、餐飲、住宿、購物、加油、充電的類型概述。</li>
+    <li><strong>科普與責任</strong>：古樹生態、廟埕禮儀、海岸與離島環境守則。</li>
+  </ol>
 
   <h2>資訊原則</h2>
   <p>
-    景點的即時資訊變動很快，因此我們<strong>不在站內維護</strong>營業狀態、Google 星級、評論數量或即時停車位；這類資訊一律引導你查看 Google Maps，確保看到的是最新狀況。站內著重相對穩定、能幫助你事前規劃的內容。
+    景點的即時資訊變動很快，因此我們<strong>不在站內維護</strong>營業狀態、Google 星級、評論數量或即時停車位；
+    這類資訊一律引導你查看 Google Maps，確保看到的是最新狀況。
+    站內著重相對穩定、能幫助你事前規劃的內容。氣象資訊每 30 分鐘於雲端更新一次。
+  </p>
+
+  <h2>資料來源與授權</h2>
+  <p>
+    本站內容整理自<strong>中央氣象署</strong>常年氣候統計、
+    <strong>澎湖國家風景區管理處</strong>導覽資料、
+    <strong>交通部觀光署</strong>觀光資訊、及 Wikimedia Commons 上的 Creative Commons 授權照片。
+    所有資料來源與圖片授權列於
+    <a href="/sources/">資料來源頁</a>。
   </p>
 
   <h2>內容與更正</h2>
   <p>
-    我們會盡力查證並持續更新內容。若你發現任何錯誤或有補充建議，非常歡迎透過
-    <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> 與我們聯絡，我們會儘快修正。詳細的資料與圖片來源列於<a href="/sources/">資料來源</a>頁。
+    我們會盡力查證並持續更新內容。若你發現任何錯誤或有補充建議，
+    非常歡迎透過 <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> 與我們聯絡，
+    我們會儘快修正。
   </p>
 
   <div slot="after">

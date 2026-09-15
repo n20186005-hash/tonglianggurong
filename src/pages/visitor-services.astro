@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import VisitorServices from "../components/VisitorServices.astro";
+import { place } from "../data/place";
+
+const breadcrumbs = [
+  { name: "首頁", path: "/" },
+  { name: "訪客服務與周邊設施", path: "/visitor-services/" },
+];
+---
+
+<BaseLayout
+  title="通樑古榕（通梁古榕）訪客服務與周邊設施｜11 類中立說明"
+  description="通樑古榕（通梁古榕）周邊的洗手間、停車、餐飲、住宿、購物、加油、充電、ATM金融、行李寄放等 11 類設施類型概述，只列類型不推薦特定商家名稱。"
+  path="/visitor-services/"
+  breadcrumbs={breadcrumbs}
+>
+  <PageHeader
+    eyebrow="Visitor Services"
+    title="訪客服務與周邊設施（通樑古榕｜通梁古榕）"
+    subtitle="只列服務類型與常見位置類型，不推薦特定商家；共 11 類設施中立說明。"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <section class="mx-auto max-w-3xl px-4 py-10 md:px-6">
+    <p class="text-lg leading-relaxed text-banyan-800/85">
+      本頁介紹<strong>通樑古榕（通梁古榕，{place.name}）</strong>周邊的訪客服務與周邊設施。它位於澎湖縣白沙鄉通樑村，周邊服務類型多元，
+      但因為是非營利科普網站，我們<strong>只列出服務類型</strong>與<strong>常見位置類型</strong>，
+      不推薦特定商家。即時資訊請以 Google Maps、澎湖縣政府觀光處與當地公告為準；
+      不論你搜尋「通樑古榕」或「通梁古榕」的「附近有什麼便利設施」，這 11 類說明都能涵蓋你的需求。
+    </p>
+    <p class="mt-4 text-banyan-800/85">
+      若你需要查詢特定商家（例如某家民宿、某個充電站），
+      建議直接使用 Google Maps 並透過評分、評論與照片判斷。
+    </p>
+  </section>
+
+  <VisitorServices />
+</BaseLayout>

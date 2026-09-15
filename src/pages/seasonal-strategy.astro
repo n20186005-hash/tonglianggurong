@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import SeasonalStrategy from "../components/SeasonalStrategy.astro";
+import { seasonalMonths } from "../data/seasonal";
+import { place } from "../data/place";
+import { faqItems, faqSchema } from "../data/faq";
+import FAQList from "../components/FAQList.astro";
+
+const breadcrumbs = [
+  { name: "首頁", path: "/" },
+  { name: "季度遊覽策略", path: "/seasonal-strategy/" },
+];
+
+const climateFaqs = faqItems.filter((f) =>
+  f.question.includes("雨") ||
+  f.question.includes("氣候") ||
+  f.question.includes("季節")
+);
+const climateFaqsFinal =
+  climateFaqs.length > 0 ? climateFaqs : faqItems.slice(0, 4);
+
+const schema = faqSchema(climateFaqsFinal);
+
+const intro = {
+  bestMonths: seasonalMonths.filter((m) => m.visitScore >= 4),
+  shoulderMonths: seasonalMonths.filter((m) => m.visitScore === 3),
+};
+---
+
+<BaseLayout
+  title="通樑古榕（通梁古榕）季度遊覽策略｜12 月氣象水文綜合分析"
+  description="通樑古榕（通梁古榕）12 月氣象、海水溫度、浪高潮汐能見度、水質野生動物、人潮與節慶綜合分析，資料以中央氣象署澎湖測站常年氣候統計與海水試驗所資料為主。"
+  path="/seasonal-strategy/"
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+  <PageHeader
+    eyebrow="Seasonal Strategy"
+    title="季度遊覽策略（通樑古榕｜通梁古榕）"
+    subtitle="把「氣象、水文、水質、人潮、節慶」五個面向整合為一年 12 個月的旅遊建議。"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <section class="mx-auto max-w-3xl px-4 py-10 md:px-6">
+    <p class="text-lg leading-relaxed text-banyan-800/85">
+      本頁規劃<strong>通樑古榕（通梁古榕，{place.name}）</strong>的 12 月季度遊覽策略。計劃前往前，多數旅客最在意的不是氣溫幾度，
+      而是「會不會下雨、風會不會太大、會不會塞人、海水適不適合戲水」。
+      本頁把這些問題整理成<strong>一年 12 個月</strong>的綜合分析，幫助你判斷最佳出發月份；
+      不論你搜尋「通樑古榕」或「通梁古榕」的「幾月去最好」，這頁都有對應的月份評分與建議。
+    </p>
+    <p class="mt-4 text-lg leading-relaxed text-banyan-800/85">
+      資料主體參考<strong>中央氣象署澎湖測站</strong>常年氣候統計，並納入澎湖海域潮汐、海岸生態與在地節慶。
+      推薦指數採氣溫、風速、降雨、人潮與生態觀察綜合評估（5 顆星最推薦）。
+    </p>
+  </section>
+
+  <SeasonalStrategy />
+
+  <section class="mx-auto max-w-3xl px-4 pb-16 md:px-6">
+    <h2 class="text-2xl font-bold text-banyan-900">如何解讀這張表</h2>
+    <ul class="mt-4 space-y-2 text-base leading-relaxed text-banyan-800/85">
+      <li>
+        <strong>推薦月（4–5 月、6 月）</strong>：
+        氣候溫和、人潮適中、海況穩定，適合各類型旅客。
+      </li>
+      <li>
+        <strong>次推薦月（3 月、7 月、9–10 月）</strong>：
+        條件尚可，但需注意特殊節慶人潮或東北季風的影響。
+      </li>
+      <li>
+        <strong>淡季（1–2 月、8 月、11–12 月）</strong>：
+        風速大或氣溫偏低，較具挑戰性，但人潮最少，適合避寒型旅客。
+      </li>
+    </ul>
+
+    <h3 class="mt-8 text-xl font-bold text-banyan-900">與其他季節性變數</h3>
+    <p class="mt-2 text-banyan-800/85">
+      除了氣候以外，<strong>潮汐、海況與潮間帶</strong>也是影響澎湖旅遊體驗的重要因素。
+      建議同時參考<a href="/visitor-guide/">參觀指南</a>與<a href="/transportation/">交通停車</a>頁，
+      並於出發前查看 <a href={place.googleMapsUrl} target="_blank" rel="noopener noreferrer">Google Maps</a> 取得即時資訊。
+    </p>
+
+    <h3 class="mt-8 text-xl font-bold text-banyan-900">常見問題</h3>
+    <div class="mt-4">
+      <FAQList items={climateFaqsFinal} />
+    </div>
+  </section>
+</BaseLayout>

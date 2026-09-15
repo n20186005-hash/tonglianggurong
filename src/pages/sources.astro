@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { images, credits } from "../data/images";
+import { sourcesReviewEntry } from "../data/reviews";
+import { place } from "../data/place";
 import { Image } from "astro:assets";
 
 const breadcrumbs = [
@@ -12,27 +14,42 @@ const breadcrumbs = [
 const references = [
   {
     name: "澎湖國家風景區管理處｜通梁古榕",
-    url: "https://www.penghu-nsa.gov.tw/TravelInformationFoodDetailC001200.aspx?Cond=46d40746-2dc0-4bf5-9d41-736200364654&Language=1028&SearchAdvanced=False",
+    url: place.penghuNsaUrl,
   },
   {
     name: "交通部觀光署｜通梁古榕",
     url: "https://www.taiwan.net.tw/m1.aspx?id=11470&sno=0001016",
   },
-  { name: "Tongliang Great Banyan（Tourism Administration 英文資料）", url: "https://eng.taiwan.net.tw/m1.aspx?id=657&sNo=0002016" },
-  { name: "Google Maps（即時開放狀態、路況與評論）", url: "https://maps.google.com/" },
+  {
+    name: "Tongliang Great Banyan（Tourism Administration 英文資料）",
+    url: place.govtTourismUrl,
+  },
+  {
+    name: "Google Maps（即時開放狀態、路況與評論）",
+    url: place.mapsShareUrl,
+  },
+  {
+    name: "Google Maps 地點頁完整版（含用戶評論與星級）",
+    url: place.googleMapsUrl,
+  },
+  // 評價來源條目（同步時間 2026 年 9 月）
+  sourcesReviewEntry,
 ];
+
+const imageCopyright =
+  "本網站所展示的所有圖片產權及版權均歸原攝影者所有。";
 ---
 
 <BaseLayout
-  title="資料與圖片來源"
-  description="通樑古榕網站的資料與圖片來源：參考澎湖國家風景區管理處、交通部觀光署等公開資料，圖片取自 Wikimedia Commons 並依 Creative Commons 授權標示作者。"
+  title="資料與圖片來源｜通樑古榕（通梁古榕）科普站"
+  description="通樑古榕（通梁古榕）網站的資料與圖片來源：參考澎湖國家風景區管理處、交通部觀光署等公開資料，圖片取自 Wikimedia Commons 並依 Creative Commons 授權標示作者，評價引用自 Google 地圖用戶評價（同步時間 2026 年 9 月）。"
   path="/sources/"
   breadcrumbs={breadcrumbs}
 >
   <PageHeader
     eyebrow="Sources & Credits"
     title="資料與圖片來源"
-    subtitle="我們相信可信的旅遊資訊應該公開來源。以下列出本站參考的資料與所有圖片的作者與授權。"
+    subtitle="我們相信可信的旅遊資訊應該公開來源。以下列出本站參考的資料、所有圖片的作者與授權，以及評價引用說明。"
     breadcrumbs={breadcrumbs}
   />
 
@@ -53,7 +70,35 @@ const references = [
       關於樹齡等有不同說法的資訊，本站均標示為地方傳說與歷史推測。即時開放狀態、營業時間與旅客評論請以 Google Maps 及相關單位公告為準。
     </p>
 
+    <h2>評價來源說明</h2>
+    <div class="rounded-2xl border border-sand-200 bg-sand-50 p-5">
+      <p class="font-semibold text-banyan-900">
+        評價 · 同步時間 <strong>2026 年 9 月</strong>
+      </p>
+      <p class="mt-2">
+        本頁面所引用之「用戶評價、星等與評論數」均來自
+        <a href={place.mapsShareUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-temple-700 underline">Google 地圖用戶評價</a>。
+      </p>
+      <p class="mt-2 text-banyan-800/85">
+        <strong>來源說明：</strong>同步自 Google 地圖用戶評價，同步時間 2026 年 9 月；版權歸原作者與 Google 地圖所有。
+      </p>
+      <p class="mt-2">
+        為避免違反 Google 平台政策，這些評價內容僅以彙整後的數值（如星等、評論總數）呈現於本站頁面，<strong>未寫入結構化資料 (JSON-LD) 的 aggregateRating</strong>。
+      </p>
+      <p class="mt-3">
+        <a
+          href={place.mapsShareUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full bg-banyan-900 px-5 py-2.5 text-sm font-semibold text-sand-50 hover:bg-banyan-800"
+        >
+          在谷歌地圖查看全部評價 ↗
+        </a>
+      </p>
+    </div>
+
     <h2 class="mt-12">圖片來源與授權</h2>
+    <p>{imageCopyright}</p>
     <p>
       本站使用的照片皆取自 <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a>，並依 Creative Commons 授權條款標示原作者與授權方式。感謝以下攝影者以開放授權分享作品：
     </p>

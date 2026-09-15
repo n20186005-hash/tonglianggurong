@@ -1,0 +1,427 @@
+---
+/**
+ * 即時天氣 + 智慧建議（條件式觸發）
+ *
+ * 設計原則：
+ * 1. 伺服器端抓取並快取（見 utils/weather.ts）
+ * 2. 不滿足條件的建議**完全不渲染**，避免把所有建議堆在頁面上
+ * 3. 三個分類：穿搭（✅）、安排（🗓️）、物品（🎒）
+ * 4. 風險警示（雷雨、大雨、強風、能見度差、高溫）獨立置頂、紅色
+ * 5. 前端**不顯示**介接服務名稱、API 金鑰等技術細節
+ */
+
+import {
+  describeWeatherCode,
+  beaufortLevel,
+  windDirectionLabel,
+  formatRefreshTime,
+  formatTimeOnly,
+  formatDateShort,
+  uvLevelLabel,
+  getAdviceList,
+  getRiskWarnings,
+  getDaySummaries,
+  verdictStyle,
+  getCoastalContext,
+  humidityHumanize,
+} from "../utils/weather";
+import type { WeatherSnapshot } from "../utils/weather";
+import { place } from "../data/place";
+
+interface Props {
+  snapshot: WeatherSnapshot;
+}
+
+const { snapshot } = Astro.props;
+
+const currentDesc = describeWeatherCode(snapshot.current.weatherCode);
+const windBf = beaufortLevel(snapshot.current.windSpeed);
+const windDir = windDirectionLabel(snapshot.current.windDirection);
+const humidityText = humidityHumanize(snapshot.current.humidity);
+const refreshedText = formatRefreshTime(snapshot.refreshedAt);
+const today = snapshot.daily[0];
+
+const warnings = getRiskWarnings(snapshot);
+const advice = getAdviceList(snapshot);
+const daySummaries = getDaySummaries(snapshot.daily);
+const coastal = getCoastalContext(snapshot);
+
+// 群組分類
+const outfitItems = advice.filter((a) => a.kind === "outfit");
+const planItems = advice.filter((a) => a.kind === "plan" || a.kind === "sunset");
+const carryItems = advice.filter((a) => a.kind === "carry");
+
+function warningStyle(level: "info" | "warn" | "danger") {
+  if (level === "danger")
+    return "bg-red-50 border-red-300 text-red-900";
+  if (level === "warn")
+    return "bg-amber-50 border-amber-300 text-amber-900";
+  return "bg-sky-50 border-sky-300 text-sky-900";
+}
+
+function toneBadge(tone: string) {
+  if (tone === "good") return "🟢";
+  if (tone === "warn") return "🟡";
+  if (tone === "danger") return "🔴";
+  return "⚪";
+}
+
+function advTitleEmoji(kind: string) {
+  if (kind === "outfit") return "✅";
+  if (kind === "plan") return "🗓️";
+  if (kind === "sunset") return "🌅";
+  return "🎒";
+}
+
+function reefSafetyTag(safe: "safe" | "watch" | "avoid") {
+  if (safe === "avoid")
+    return { emoji: "🚫", label: "禁止登礁", cls: "bg-red-100/80 text-red-900" };
+  if (safe === "watch")
+    return { emoji: "⚠️", label: "留意腳步", cls: "bg-amber-100/80 text-amber-900" };
+  return { emoji: "✅", label: "可小心走訪", cls: "bg-leaf-100/80 text-leaf-900" };
+}
+
+function swimTag(v: "ok" | "watch" | "avoid") {
+  if (v === "avoid")
+    return { emoji: "🚫", label: "不建議戲水", cls: "bg-red-100/80 text-red-900" };
+  if (v === "watch")
+    return { emoji: "⚠️", label: "謹慎下水", cls: "bg-amber-100/80 text-amber-900" };
+  return { emoji: "💧", label: "適合戲水", cls: "bg-sky-100/80 text-sky-900" };
+}
+---
+
+<section
+  aria-labelledby="weather-title"
+  class="mx-auto max-w-6xl px-4 py-12 md:px-6"
+>
+  <div class="mb-6">
+    <p class="text-sm font-semibold tracking-wide text-temple-700">即時氣象</p>
+    <h2
+      id="weather-title"
+      class="mt-2 text-3xl font-bold text-banyan-900 md:text-4xl"
+    >
+      通樑古榕現在的天氣
+    </h2>
+    <p class="mt-2 text-sm text-banyan-800/75">
+      以
+      <strong class="text-banyan-900">{place.cityName}通樑村</strong>
+      為參考點；下方建議只顯示當下與今日有出現的提醒，不適用的條件自動略過。
+    </p>
+  </div>
+
+  <!-- 當前概況 -->
+  <div
+    class="grid gap-4 rounded-3xl border border-sand-200 bg-white p-6 shadow-sm md:grid-cols-[auto_1fr_auto] md:items-center md:gap-8"
+  >
+    <div
+      class="flex items-center justify-center md:justify-start"
+      aria-hidden="true"
+    >
+      <span class="text-7xl">{currentDesc.emoji}</span>
+    </div>
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-wide text-temple-700">
+        目前天氣
+      </p>
+      <p class="mt-1 text-3xl font-bold text-banyan-900">
+        {currentDesc.label}
+      </p>
+      <p class="mt-1 text-base text-banyan-800/80">
+        氣溫 <strong class="text-banyan-900">{Math.round(snapshot.current.temperature)}°C</strong>
+        ｜體感 <strong class="text-banyan-900">{Math.round(snapshot.current.apparentTemperature)}°C</strong>
+        ｜{humidityText}
+      </p>
+      <p class="mt-1 text-sm text-banyan-800/75">
+        風速 {snapshot.current.windSpeed.toFixed(1)} km/h（{windBf.label}）
+        ｜風向 {windDir}
+      </p>
+    </div>
+    <div
+      class="rounded-2xl bg-sand-100/70 p-4 text-sm md:max-w-[220px]"
+      aria-live="polite"
+    >
+      <p class="font-semibold text-banyan-900">今日</p>
+      <p class="text-xs text-banyan-800/70">
+        {formatDateShort(today.date)}
+        {today.weekday}
+      </p>
+      <p class="mt-1 text-xs text-banyan-800/85">
+        {Math.round(today.tempMin)}° / <span class="font-semibold text-banyan-900">{Math.round(today.tempMax)}°</span>
+      </p>
+      <p class="mt-1 text-xs text-banyan-800/85">
+        降雨 <span class:list={[
+          "font-semibold",
+          today.precipitationProbability >= 60 ? "text-temple-700" : "text-banyan-900",
+        ]}>{today.precipitationProbability}%</span>
+      </p>
+      <p class="mt-1 text-xs text-banyan-800/85">
+        UV <span class="font-semibold text-banyan-900">{today.uvIndexMax.toFixed(0)}（{uvLevelLabel(today.uvIndexMax)}）</span>
+      </p>
+      <p class="mt-1 text-xs text-banyan-800/85">
+        日落 {formatTimeOnly(today.sunset)}
+      </p>
+    </div>
+  </div>
+
+  <!-- 風險警示：只在有警示時顯示 -->
+  {warnings.length > 0 && (
+    <div class="mt-4 space-y-2" aria-label="氣象風險警示">
+      <p class="text-xs font-semibold uppercase tracking-wide text-red-700">
+        ⚠️ 風險提醒
+      </p>
+      <ul class="space-y-2">
+        {warnings.map((w) => (
+          <li class:list={["rounded-2xl border px-4 py-3 text-sm", warningStyle(w.level)]}>
+            <p class="font-semibold">{w.title}</p>
+            <p class="mt-1 leading-relaxed">{w.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  <!-- 智慧建議：三個分類，各自獨立渲染 -->
+  <div class="mt-6 grid gap-4 md:grid-cols-3">
+    {outfitItems.length > 0 && (
+      <div class="rounded-2xl border border-sand-200 bg-white p-5">
+        <p class="flex items-center gap-2 text-sm font-semibold text-banyan-900">
+          <span aria-hidden="true">✅</span> 出行穿搭
+        </p>
+        <ul class="mt-3 space-y-3">
+          {outfitItems.map((it) => (
+            <li>
+              <p class="text-sm font-semibold text-banyan-900">
+                <span class="mr-1" aria-hidden="true">{toneBadge(it.tone)}</span>{it.title}
+              </p>
+              <p class="mt-0.5 text-sm leading-relaxed text-banyan-800/85">{it.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {planItems.length > 0 && (
+      <div class="rounded-2xl border border-sand-200 bg-white p-5">
+        <p class="flex items-center gap-2 text-sm font-semibold text-banyan-900">
+          <span aria-hidden="true">🗓️</span> 游玩安排
+        </p>
+        <ul class="mt-3 space-y-3">
+          {planItems.map((it) => (
+            <li>
+              <p class="text-sm font-semibold text-banyan-900">
+                <span class="mr-1" aria-hidden="true">{advTitleEmoji(it.kind)}</span>{it.title}
+              </p>
+              <p class="mt-0.5 text-sm leading-relaxed text-banyan-800/85">{it.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {carryItems.length > 0 && (
+      <div class="rounded-2xl border border-sand-200 bg-white p-5">
+        <p class="flex items-center gap-2 text-sm font-semibold text-banyan-900">
+          <span aria-hidden="true">🎒</span> 隨身物品
+        </p>
+        <ul class="mt-3 space-y-3">
+          {carryItems.map((it) => (
+            <li>
+              <p class="text-sm font-semibold text-banyan-900">
+                <span class="mr-1" aria-hidden="true">{toneBadge(it.tone)}</span>{it.title}
+              </p>
+              <p class="mt-0.5 text-sm leading-relaxed text-banyan-800/85">{it.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
+
+  <!-- 一週評分總覽 -->
+  <div class="mt-6">
+    <div class="flex items-baseline justify-between">
+      <h3 class="text-base font-semibold text-banyan-900">一週評分總覽</h3>
+      <p class="text-xs text-banyan-800/65">依降雨、風力、雷雨發生機率自動給標籤</p>
+    </div>
+    <ol
+      class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7"
+      aria-label="一週評分總覽"
+    >
+      {
+        daySummaries.map((s, i) => {
+          const style = verdictStyle(s.verdict);
+          const d = snapshot.daily[i];
+          return (
+            <li
+              class:list={[
+                "rounded-2xl border bg-white p-3 text-center",
+                style.bg,
+              ]}
+            >
+              <p class:list={["text-xs font-semibold uppercase tracking-wide", style.fg]}>
+                {i === 0 ? "今日" : s.weekday}
+              </p>
+              <p class:list={["mt-1 text-base font-bold", style.fg]}>
+                <span aria-hidden="true">{style.emoji}</span> {s.label}
+              </p>
+              <p class="mt-1 text-[11px] leading-snug text-banyan-800/80">
+                {s.reason}
+              </p>
+              <p class="mt-2 text-xs text-banyan-800/70">
+                {d.date.slice(5)} · 降雨 {d.precipitationProbability}%
+              </p>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+
+  <!-- 海邊與潮汐（通樑古榕近海 + 潮間帶場景，動態渲染） -->
+  <div class="mt-6">
+    <div class="flex items-baseline justify-between">
+      <h3 class="text-base font-semibold text-banyan-900">海邊與潮汐</h3>
+      <p class="text-xs text-banyan-800/65">
+        海水溫、浪高、潮汐模型；下海與礁石安全依當日天氣聯合判定
+      </p>
+    </div>
+
+    <div
+      class="mt-3 grid gap-4 rounded-3xl border border-sand-200 bg-white p-5 md:grid-cols-2"
+      aria-label="海邊與潮汐建議"
+    >
+      <!-- 左：海水 + 潮汐概況 -->
+      <div class="grid gap-3 sm:grid-cols-2">
+        <div class="rounded-2xl bg-sky-50/80 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-sky-800">
+            海水溫度
+          </p>
+          <p class="mt-1 text-xl font-bold text-banyan-900">
+            {coastal.seaTemperatureC}°C
+          </p>
+          <p class="mt-1 text-[11px] leading-snug text-banyan-800/75">
+            {coastal.seaTemperatureC >= 25
+              ? "水溫舒適，適合戲水與潮間帶走訪"
+              : coastal.seaTemperatureC >= 22
+                ? "水溫偏涼，短時間涉水尚可"
+                : "水溫偏低，長時間泡水容易失溫"}
+          </p>
+        </div>
+        <div class="rounded-2xl bg-sky-50/80 p-4">
+          <p class="text-xs font-semibold uppercase tracking-wide text-sky-800">
+            浪高 / 浪級
+          </p>
+          <p class="mt-1 text-xl font-bold text-banyan-900">
+            {coastal.waveHeightM} m · {coastal.waveLevel}
+          </p>
+          <p class="mt-1 text-[11px] leading-snug text-banyan-800/75">
+            {coastal.waveHeightM < 1
+              ? "平穩，步行跨海大橋與海堤舒適"
+              : coastal.waveHeightM < 2
+                ? "小浪至中浪，海堤勿過於靠近外側"
+                : "風浪偏大，遠離礁石與迎浪面"}
+          </p>
+        </div>
+        <div class="rounded-2xl bg-sand-100/80 p-4 sm:col-span-2">
+          <p class="text-xs font-semibold uppercase tracking-wide text-temple-700">
+            今日潮汐
+          </p>
+          <p class="mt-1 text-sm font-semibold text-banyan-900">
+            {coastal.tidePhase}
+          </p>
+          <p class="mt-1 text-xs leading-relaxed text-banyan-800/85">
+            {coastal.tideSuggestion}
+          </p>
+        </div>
+      </div>
+
+      <!-- 右：礁石安全 + 戲水建議（動態，僅觸發的級別顯示描述） -->
+      <div class="grid gap-3">
+        <div
+          class:list={[
+            "rounded-2xl border p-4",
+            reefSafetyTag(coastal.reefSafety).cls,
+          ]}
+        >
+          <p class="text-xs font-semibold uppercase tracking-wide">
+            <span aria-hidden="true">{reefSafetyTag(coastal.reefSafety).emoji}</span>{" "}
+            礁石安全：{reefSafetyTag(coastal.reefSafety).label}
+          </p>
+          <p class="mt-2 text-sm leading-relaxed text-banyan-900/95">
+            {coastal.reefSafetyText}
+          </p>
+        </div>
+        <div
+          class:list={[
+            "rounded-2xl border p-4",
+            swimTag(coastal.swimVerdict).cls,
+          ]}
+        >
+          <p class="text-xs font-semibold uppercase tracking-wide">
+            <span aria-hidden="true">{swimTag(coastal.swimVerdict).emoji}</span>{" "}
+            戲水／下海：{swimTag(coastal.swimVerdict).label}
+          </p>
+          <p class="mt-2 text-sm leading-relaxed text-banyan-900/95">
+            {coastal.swimText}
+          </p>
+        </div>
+        <p class="text-[11px] leading-snug text-banyan-800/60">
+          潮汐與海溫為基於常年氣候態的科普級參考；正式登礁、戲水與出海請以澎湖縣政府、中央氣象署海象預報及現場公告為準。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 未來七日 -->
+  <div class="mt-6">
+    <h3 class="text-base font-semibold text-banyan-900">未來七日</h3>
+    <ol
+      class="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7"
+      aria-label="未來七日天氣預報"
+    >
+      {
+        snapshot.daily.map((d, i) => {
+          const desc = describeWeatherCode(d.weatherCode);
+          const bf = beaufortLevel(d.windSpeedMax);
+          const isToday = i === 0;
+          return (
+            <li
+              class:list={[
+                "rounded-2xl border bg-white p-4 text-center",
+                isToday
+                  ? "border-temple-600 ring-1 ring-temple-300"
+                  : "border-sand-200",
+              ]}
+            >
+              <p class="text-xs font-semibold uppercase tracking-wide text-banyan-800/60">
+                {isToday ? "今日" : d.weekday}
+              </p>
+              <p class="text-xs text-banyan-800/60">
+                {d.date.slice(5)}
+              </p>
+              <p class="mt-2 text-3xl" aria-hidden="true">{desc.emoji}</p>
+              <p class="text-xs font-medium text-banyan-900">{desc.label}</p>
+              <p class="mt-2 text-sm font-semibold text-banyan-900">
+                {Math.round(d.tempMin)}° / {Math.round(d.tempMax)}°
+              </p>
+              <p class="mt-1 text-xs text-temple-700">
+                降雨 {d.precipitationProbability}%
+              </p>
+              <p class="text-xs text-banyan-800/70">
+                UV {d.uvIndexMax.toFixed(0)}（{uvLevelLabel(d.uvIndexMax)}）
+              </p>
+              <p class="text-xs text-banyan-800/70">
+                {bf.label} {Math.round(d.windSpeedMax)} km/h
+              </p>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+
+  <p class="mt-4 text-xs text-banyan-800/55">
+    資訊更新於 {refreshedText}（台北時區）。
+    跨海大橋、海面與沿岸地形會使風速有差異，出發前請再次確認當地最新氣象。
+  </p>
+</section>

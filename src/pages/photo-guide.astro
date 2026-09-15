@@ -4,6 +4,7 @@ import Figure from "../components/Figure.astro";
 import Callout from "../components/Callout.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
 import { images } from "../data/images";
+import { place } from "../data/place";
 
 const spots = [
   { title: "入口正面廣角", text: "從廟埕正面用廣角納入整片樹冠與保安宮，交代環境與規模。" },
@@ -16,20 +17,20 @@ const spots = [
 ---
 
 <ArticleLayout
-  title="通樑古榕拍照指南"
+  title="通樑古榕（通梁古榕）拍照指南｜6 個必拍機位與光影時機"
   eyebrow="Photo Guide"
-  subtitle="氣根長廊、廟宇屋脊、斑駁光影——六個最好拍的位置與角度，一次告訴你。"
-  description="通樑古榕拍照指南：氣根長廊、樹冠仰拍、廟宇屋脊與榕葉同框、人物比例與低角度光影等六個取景位置，以及光線與人潮的拍照時機建議。"
+  subtitle="本頁介紹通樑古榕（通梁古榕）的拍照指南：氣根長廊、廟宇屋脊、斑駁光影——六個最好拍的位置與角度，一次告訴你。"
+  description="通樑古榕（通梁古榕）拍照指南：氣根長廊支柱根、樹冠仰拍、保安宮燕尾屋脊與榕葉同框、人物比例與低角度光影等六個取景位置，以及光線與人潮的拍照時機建議。"
   path="/photo-guide/"
   ogImage="/og/tongliang-gurong.jpg"
 >
   <p>
-    通樑古榕是很上鏡的地方，但拍得好不好，關鍵在於<strong>取景位置</strong>與<strong>光線時機</strong>。以下整理六個最推薦的機位，從環境廣角到光影細節都涵蓋。
+    本頁介紹<strong>通樑古榕（通梁古榕）</strong>的拍照指南。通樑古榕（通梁古榕）是很上鏡的地方，但拍得好不好，關鍵在於<strong>取景位置</strong>與<strong>光線時機</strong>。以下整理六個最推薦的機位，從環境廣角到光影細節都涵蓋；不論你搜尋「通樑古榕」或「通梁古榕」的拍照點，這六個位置都是攝影者公認最好拍的角度。
   </p>
 
   <Figure
     src={images.banyanCanopyTall}
-    alt="通樑古榕樹蔭下的支柱根長廊與斑駁光影 Tongliang Great Banyan"
+    alt={`${place.officialEnglishName} - ${place.shortName} 樹蔭下的支柱根長廊與斑駁光影 Main view in ${place.cityName}, ${place.countryNameEn}`}
     caption="支柱根之間是最有張力的取景區，人物與地面光影都能表現古榕尺度。"
   />
 

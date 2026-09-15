@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { getCollection, render } from "astro:content";
 import ArticleLayout from "../layouts/ArticleLayout.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
@@ -24,6 +26,7 @@ const path = `/${guide.id}/`;
   description={guide.data.description}
   path={path}
   schemaType="WebPage"
+  robots={["terms", "editorial-policy", "corrections"].includes(guide.id) ? "noindex, follow" : undefined}
 >
   <Content />
 

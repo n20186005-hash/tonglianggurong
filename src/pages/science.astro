@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import ScienceEducation from "../components/ScienceEducation.astro";
+import { place } from "../data/place";
+
+const breadcrumbs = [
+  { name: "首頁", path: "/" },
+  { name: "科普與訪客責任", path: "/science/" },
+];
+---
+
+<BaseLayout
+  title="通樑古榕（通梁古榕）科普與訪客責任｜6 大主題 + 地質雙重奏"
+  description="通樑古榕（通梁古榕）的科普知識：獨木成林、澎湖東北季風、古榕與保安宮共生、支柱根與人工支撐、樹蔭生物多樣性、紅色砂岩vs柱狀玄武岩地質、潮間帶與海岸環境，以及每位訪客可實踐的責任守則。"
+  path="/science/"
+  breadcrumbs={breadcrumbs}
+>
+  <PageHeader
+    eyebrow="Science & Responsibility"
+    title="科普與訪客責任（通樑古榕｜通梁古榕）"
+    subtitle="了解這棵樹，也尊重這片土地——科普知識與環境守則一次讀完。"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <section class="mx-auto max-w-3xl px-4 py-10 md:px-6">
+    <p class="text-lg leading-relaxed text-banyan-800/85">
+      本頁介紹<strong>通樑古榕（通梁古榕，{place.name}）</strong>的科普知識與訪客責任。它不只是一處景點，而是一個正在與澎湖氣候、人文互動的活體文化資產。
+      從「獨木成林」的生態機制，到廟宇與古樹數百年的共生，
+      再到澎湖特有的東北季風、海岸生態與海洋議題，
+      這個地方值得被以<strong>科普與責任</strong>的視角理解；
+      不論你搜尋「通樑古榕」或「通梁古榕」的生態或地質知識，這 7 張科普卡都有對應的內容。
+    </p>
+  </section>
+
+  <ScienceEducation />
+</BaseLayout>

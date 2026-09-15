@@ -1,0 +1,78 @@
+{
+  "name": "通樑古榕 Tongliang Gurong",
+  "short_name": "通樑古榕",
+  "description": "通樑古榕（Tongliang Great Banyan）深度旅遊指南，整理交通、氣根景觀、保安宮歷史、拍照位置與澎湖北環行程。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf8f2",
+  "theme_color": "#244a36",
+  "lang": "zh-Hant-TW",
+  "dir": "ltr",
+  "categories": ["travel", "lifestyle", "education"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "交通停車",
+      "short_name": "交通",
+      "description": "通樑古榕交通、停車與 Google Maps 導航",
+      "url": "/transportation/",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "北環行程",
+      "short_name": "北環",
+      "description": "澎湖北環一日行程",
+      "url": "/north-loop-itinerary/",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "常見問題",
+      "short_name": "FAQ",
+      "description": "出發前最常被問到的問題",
+      "url": "/faq/",
+      "icons": [
+        {
+          "src": "/icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

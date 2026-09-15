@@ -1,16 +1,16 @@
-import heroTempleBanyanAerial from "../assets/images/hero-temple-banyan-aerial.jpg";
-import banyanCanopyTall from "../assets/images/banyan-canopy-tall.jpg";
-import banyanTrunk from "../assets/images/banyan-trunk.jpg";
-import banyanFront from "../assets/images/banyan-front.jpg";
-import banyanHarbor from "../assets/images/banyan-harbor.jpg";
-import banyanTempleSign from "../assets/images/banyan-temple-sign.jpg";
-import aerialRoots from "../assets/images/aerial-roots.jpg";
-import nearbyBridge from "../assets/images/nearby-bridge.jpg";
-import nearbyWhaleCave from "../assets/images/nearby-whale-cave.jpg";
-import nearbyErkan from "../assets/images/nearby-erkan.jpg";
-import nearbyDaguoye from "../assets/images/nearby-daguoye.jpg";
-import nearbyChixi from "../assets/images/nearby-chixi.jpg";
-import nearbyLighthouse from "../assets/images/nearby-lighthouse.jpg";
+import heroTempleBanyanAerial from "../assets/images/hero-temple-banyan-aerial-1.jpg";
+import banyanCanopyTall from "../assets/images/banyan-canopy-tall-1.jpg";
+import banyanTrunk from "../assets/images/banyan-trunk-1.jpg";
+import banyanFront from "../assets/images/banyan-front-1.jpg";
+import banyanHarbor from "../assets/images/banyan-harbor-1.jpg";
+import banyanTempleSign from "../assets/images/banyan-temple-sign-1.jpg";
+import aerialRoots from "../assets/images/aerial-roots-1.jpg";
+import nearbyBridge from "../assets/images/nearby-bridge-1.jpg";
+import nearbyWhaleCave from "../assets/images/nearby-whale-cave-1.jpg";
+import nearbyErkan from "../assets/images/nearby-erkan-1.jpg";
+import nearbyDaguoye from "../assets/images/nearby-daguoye-1.jpg";
+import nearbyChixi from "../assets/images/nearby-chixi-1.jpg";
+import nearbyLighthouse from "../assets/images/nearby-lighthouse-1.jpg";
 
 export const images = {
   heroTempleBanyanAerial,

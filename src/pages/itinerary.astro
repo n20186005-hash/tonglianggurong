@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import ItineraryPlans from "../components/ItineraryPlans.astro";
+
+const breadcrumbs = [
+  { name: "首頁", path: "/" },
+  { name: "路線方案", path: "/itinerary/" },
+];
+---
+
+<BaseLayout
+  title="通樑古榕（通梁古榕）路線方案｜3 條定制 + 2 條通用"
+  description="通樑古榕（通梁古榕）的按人群定制路線（親子家庭、攝影自然、低體力無障礙）與通用路線（半日、全日北環行程），共 5 條方案依「同行對象」與「可投入時間」挑選。"
+  path="/itinerary/"
+  breadcrumbs={breadcrumbs}
+>
+  <PageHeader
+    eyebrow="Itinerary Plans"
+    title="按人群定制的遊覽方案"
+    subtitle="三條針對性路線 + 兩條通用路線，依「同行對象」與「可投入時間」挑選。"
+    breadcrumbs={breadcrumbs}
+  />
+
+  <ItineraryPlans />
+</BaseLayout>

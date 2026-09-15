@@ -16,6 +16,7 @@ interface Props {
   ogImage?: string;
   ogImageAlt?: string;
   schemaType?: "Article" | "WebPage";
+  robots?: string;
   extraSchema?: Record<string, unknown> | Record<string, unknown>[];
 }
 const {
@@ -27,6 +28,7 @@ const {
   ogImage,
   ogImageAlt,
   schemaType = "Article",
+  robots,
   extraSchema,
 } = Astro.props;
 
@@ -85,6 +87,7 @@ const schema = [
   ogImage={ogImage}
   ogImageAlt={ogImageAlt}
   ogType={schemaType === "Article" ? "article" : "website"}
+  robots={robots}
   schema={schema}
   breadcrumbs={breadcrumbs}
 >

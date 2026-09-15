@@ -1,31 +1,67 @@
 ---
+export const prerender = false;
+
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import GoogleMap from "../components/GoogleMap.astro";
 import FAQList from "../components/FAQList.astro";
 import NearbyCard from "../components/NearbyCard.astro";
-import { place } from "../data/place";
+import WeatherWidget from "../components/WeatherWidget.astro";
+import SeasonalStrategy from "../components/SeasonalStrategy.astro";
+import ItineraryPlans from "../components/ItineraryPlans.astro";
+import VisitorServices from "../components/VisitorServices.astro";
+import ScienceEducation from "../components/ScienceEducation.astro";
+import { place, site } from "../data/place";
 import { images } from "../data/images";
 import { mainNav } from "../data/navigation";
 import { nearbyPlaces } from "../data/nearby";
 import { faqItems, faqSchema } from "../data/faq";
+import { getWeatherSnapshot } from "../utils/weather";
 
 const homeFaq = faqItems.slice(0, 6);
 
+// 伺服器端抓取即時天氣與七日預報，使用 Cache API 於 Cloudflare Workers 邊緣節點快取 30 分鐘
+// 注意：前端頁面「不顯示」任何介接服務資訊（依需求）
+let weatherSnapshot: Awaited<ReturnType<typeof getWeatherSnapshot>> | null =
+  null;
+try {
+  const cache = (globalThis as { caches?: Cache }).caches;
+  weatherSnapshot = await getWeatherSnapshot(cache);
+} catch (err) {
+  // 即使天氣抓取失敗，首頁其他內容仍照常呈現；氣象區塊將不顯示
+  console.error("[weather] snapshot failed:", (err as Error).message);
+}
+
+// TouristAttraction JSON-LD：綁定 SEO 實體
+// 注意：評論 / 評分只在前端顯示，不進入結構化資料 aggregateRating，
+// 以避免 Google 判定違反用戶原創內容政策。
 const touristSchema = {
   "@context": "https://schema.org",
   "@type": "TouristAttraction",
+  "@id": `${site.url}/#attraction`,
   name: place.name,
-  alternateName: [...place.alternateNames],
-  url: "https://tonglianggurong.com/",
+  alternateName: [
+    ...place.alternateNames,
+    `${place.cityName} ${place.name}`,
+    `${place.officialEnglishName} ${place.cityNameEn}`,
+  ],
   description:
-    "位於澎湖縣白沙鄉通樑村、以大量氣根與保安宮人文景觀聞名的古榕景點，是澎湖跨海大橋旁、北環路線上的代表性地標。",
-  image: "https://tonglianggurong.com/og/tongliang-gurong.jpg",
+    `Comprehensive visitor guide to ${place.officialEnglishName} (${place.name}) in ${place.cityName}, ${place.stateProvince}, ${place.countryNameEn}. ` +
+    `View location map, opening details, nearby Penghu Great Bridge, and travel tips.`,
+  url: site.url + "/",
+  telephone: place.phone,
+  inLanguage: "zh-Hant-TW",
+  image: [
+    `${site.url}/og/tongliang-gurong.jpg`,
+  ],
+  isAccessibleForFree: true,
+  publicAccess: true,
   address: {
     "@type": "PostalAddress",
     streetAddress: place.addressParts.streetAddress,
     addressLocality: place.addressParts.addressLocality,
     addressRegion: place.addressParts.addressRegion,
+    postalCode: place.postalCode,
     addressCountry: place.addressParts.addressCountry,
   },
   geo: {
@@ -33,9 +69,19 @@ const touristSchema = {
     latitude: place.coordinates.latitude,
     longitude: place.coordinates.longitude,
   },
-  hasMap: place.googleMapsUrl,
-  isAccessibleForFree: true,
+  hasMap: place.mapsShareUrl,
+  sameAs: [
+    place.mapsShareUrl,
+    place.googleMapsUrl,
+    place.govtTourismUrl,
+    place.penghuNsaUrl,
+  ],
   touristType: ["自由行", "親子", "長輩", "攝影", "機車旅行"],
+  containedInPlace: {
+    "@type": "AdministrativeArea",
+    name: `${place.stateProvince}, ${place.countryNameEn}`,
+  },
+  additionalType: "https://schema.org/PlaceOfWorship",
 };
 
 const facts = [
@@ -50,19 +96,19 @@ const reasons = [
     title: "一棵樹形成一片綠蔭",
     body: "氣根落地後逐漸增粗成為支柱根，看起來像許多棵樹，其實源自同一株古榕，撐起約 660 平方公尺的樹蔭空間。",
     image: images.banyanTrunk,
-    alt: "通樑古榕的支柱根與樹頭 Tongliang Great Banyan aerial roots",
+    alt: `${place.officialEnglishName} - ${place.shortName} 主幹與支柱根 Main view in ${place.cityName}, ${place.countryNameEn}`,
   },
   {
     title: "古樹與廟宇共生",
     body: "古榕枝幹、通樑保安宮的朱紅屋脊、廟埕與居民生活交織在一起，是澎湖少見的人文與自然共構空間。",
     image: images.banyanTempleSign,
-    alt: "通樑榕樹與保安宮廟牌 Tongliang Banyan and Baoan Temple",
+    alt: `${place.officialEnglishName} 與通樑保安宮廟牌 Baoan Temple near ${place.shortName}`,
   },
   {
     title: "北環途中最舒適的休息點",
     body: "濃密樹蔭適合避開澎湖烈日，吃一支仙人掌冰、拍照，再前往一橋之隔的跨海大橋，是北環最自然的中繼站。",
     image: images.heroTempleBanyanAerial,
-    alt: "通樑古榕、保安宮與通樑村空拍景觀 Tongliang Great Banyan and village",
+    alt: `${place.officialEnglishName} 與通樑村空拍全景 ${place.shortName} in ${place.cityName}`,
   },
 ];
 
@@ -79,8 +125,8 @@ const routeStops = [
 ---
 
 <BaseLayout
-  title="通樑古榕｜交通、拍照、保安宮與澎湖北環行程"
-  description="通樑古榕完整旅遊指南，整理交通、停車、氣根景觀、保安宮歷史、拍照位置與澎湖北環行程。最新開放狀態、路況與旅客評論請透過 Google Maps 查看。"
+  title={`${place.name}（${place.shortName}｜通梁古榕）｜澎湖白沙景點、交通、美食、保安宮與北環行程 | ${place.officialEnglishName}`}
+  description={`${place.name}（通梁古榕，${place.officialEnglishName}）完整遊覽指南：位於澎湖縣白沙鄉通樑村，介紹 95 根氣根形成的獨木成林奇觀、通樑保安宮、交通停車方式、周邊澎湖跨海大橋、仙人掌冰等美食與北環一日遊行程。`}
   path="/"
   schema={[touristSchema, faqSchema(homeFaq)]}
 >
@@ -88,7 +134,7 @@ const routeStops = [
   <section class="relative isolate overflow-hidden bg-banyan-950 text-sand-50">
     <Image
       src={images.banyanCanopyTall}
-      alt="通樑古榕氣根形成的樹蔭長廊 Tongliang Great Banyan aerial-root corridor"
+      alt={`${place.officialEnglishName} - ${place.shortName} 氣根形成的樹蔭長廊 Main view in ${place.cityName}, ${place.countryNameEn}`}
       widths={[480, 768, 1280, 1920]}
       sizes="100vw"
       loading="eager"
@@ -103,17 +149,32 @@ const routeStops = [
     <div class="mx-auto max-w-6xl px-4 py-24 md:px-6 md:py-36">
       <div class="max-w-2xl">
         <p class="text-sm font-semibold tracking-[0.3em] text-leaf-300 uppercase">
-          澎湖 · 白沙鄉通樑村
+          {place.stateProvince} · {place.cityName}通樑村
         </p>
-        <h1 class="mt-4 text-5xl font-bold tracking-tight md:text-7xl">通樑古榕</h1>
-        <p class="mt-3 text-lg font-medium text-sand-100/90">
-          Tongliang Great Banyan
+        <h1 class="mt-4 text-5xl font-bold tracking-tight md:text-7xl">
+          {place.name}（{place.officialEnglishName}｜通梁古榕）· {place.cityName}
+        </h1>
+        <p class="mt-3 text-sm font-semibold tracking-[0.25em] text-leaf-300/85 uppercase">
+          {place.shortName} · Baisha · Penghu · Taiwan
         </p>
         <p class="mt-6 text-2xl font-semibold text-sand-50 md:text-3xl">
-          一棵樹，長成一片森林
+          {place.tagline}
         </p>
+        <!-- 4.1 首段等位聲明：將網域語義（短稱）等同於官方全稱 -->
         <p class="mt-4 max-w-xl text-lg leading-relaxed text-sand-100/85">
-          走進氣根交織而成的綠蔭，認識通樑保安宮、古榕傳說與澎湖北環最具代表性的自然人文地標。
+          Welcome to <strong class="font-bold text-sand-50">{place.officialEnglishName}</strong>，
+          widely recognized as the central <strong class="font-bold text-sand-50">{place.shortName}</strong>。
+          Located in the heart of <strong class="font-bold text-sand-50">{place.cityName}</strong>，
+          <strong class="font-bold text-sand-50">{place.stateProvince}</strong>，
+          <strong class="font-bold text-sand-50">{place.countryNameEn}</strong>，
+          this destination serves as a primary hub for travelers visiting the region.
+        </p>
+        <!-- 4.3 週邊語義集群描述：核心地標 1 / 2 -->
+        <p class="mt-3 max-w-xl text-base leading-relaxed text-sand-100/80">
+          When visiting {place.officialEnglishName}, visitors can easily explore surrounding
+          historical landmarks and points of interest, including
+          <strong class="font-semibold text-sand-50">澎湖跨海大橋（Penghu Great Bridge）</strong>
+          and <strong class="font-semibold text-sand-50">通樑保安宮（Baoan Temple）</strong>.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a
@@ -137,7 +198,7 @@ const routeStops = [
 
   <!-- 快速認識 -->
   <section aria-labelledby="facts-title" class="mx-auto max-w-6xl px-4 py-16 md:px-6">
-    <h2 id="facts-title" class="sr-only">快速認識通樑古榕</h2>
+    <h2 id="facts-title" class="sr-only">快速認識{place.name}</h2>
     <dl class="grid grid-cols-2 gap-4 md:grid-cols-4">
       {
         facts.map((f) => (
@@ -148,6 +209,54 @@ const routeStops = [
         ))
       }
     </dl>
+  </section>
+
+  <!-- About Tongliang Great Banyan（H2 語義結構）-->
+  <section aria-labelledby="about-title" class="mx-auto max-w-3xl px-4 md:px-6">
+    <h2 id="about-title" class="text-3xl font-bold text-banyan-900 md:text-4xl">
+      About {place.officialEnglishName}
+    </h2>
+    <div class="mt-5 space-y-5 text-lg leading-relaxed text-banyan-800/85">
+      <p>
+        <strong>{place.officialEnglishName}</strong>（中文：<strong>{place.name}</strong>，亦作
+        <strong>通梁古榕</strong>，又稱
+        <strong>{place.shortName}</strong>）位於 <strong>{place.cityName}</strong>，
+        <strong>{place.stateProvince}</strong>，<strong>{place.countryName}</strong>，是澎湖北環最具代表性的自然人文地標。
+        不論你搜尋「通樑古榕」或「通梁古榕」，指的都是這棵位在通樑保安宮前的老榕樹。
+      </p>
+      <p>
+        這株被稱為「<strong>通樑古榕</strong>（通梁古榕）」的老榕樹以約 95 根氣根撐起約 660 平方公尺的綠蔭，
+        與一旁的 <strong>通樑保安宮（澎湖保安宮）</strong> 共生數百年，是澎湖白沙鄉通樑村的信仰與生活中心。
+      </p>
+      <h3 class="pt-2 text-xl font-bold text-banyan-900">古榕的由來</h3>
+      <p>
+        通樑保安宮主祀廣澤尊王（又稱郭聖王），相傳由清朝年間泉州同安移民奉請而來。廟方沿革指出，保安宮建廟之時，
+        廟埕前已有一棵老榕，地方耆老推測古榕的樹齡至少與廟宇相當，因此「<strong>廟與樹共生</strong>」並非後人附會的浪漫說法，
+        而是通樑村數代人共同的生活記憶。
+      </p>
+      <h3 class="pt-2 text-xl font-bold text-banyan-900">地名「通樑」的由來</h3>
+      <p>
+        「<strong>通樑</strong>」地名源自清代金龍橋（古稱「通梁橋」）的所在地，後因橋樑與聚落緊密相依而得名。
+        由於該區海岸線多見紅色砂岩，當地居民另稱「<strong>紅毛城</strong>」以形容赭紅色岩石遍布的地貌。
+        如今通樑聚落以保安宮為中心，古榕、跨海大橋與白沙海岸線共同構成通樑村的識別符號。
+      </p>
+      <h3 class="pt-2 text-xl font-bold text-banyan-900">樹齡爭議：200 年還是 300 年？</h3>
+      <p>
+        由於缺乏精確的種植紀錄，關於<strong>{place.name}</strong>的樹齡有「200 多年」與「超過 300 年」兩種說法。
+        地方耆老與部分文史資料以前者為主，而遊客口耳相傳的「三百年老榕」則屬後人浪漫化推測。
+        本站依循<strong>科學立場</strong>將此列為「地方傳說與歷史推測」，不採用任一數字作為確定資訊。
+      </p>
+      <h3 class="pt-2 text-xl font-bold text-banyan-900">一棵樹的科學</h3>
+      <p>
+        從生物學角度，<strong>{place.name}</strong>展示的是熱帶至亞熱帶海岸常見的「<strong>獨木成林</strong>」策略：
+        母樹的枝條向下伸出氣根，氣根落地後逐漸木質化並增粗，最終形成能承重的「<strong>支柱根</strong>」，
+        讓樹冠得以向四面八方擴張。古榕估計約 95 根支柱根撐起的傘狀樹冠覆蓋約 660 平方公尺，
+        是台灣西部海岸少數能近距離走入的「<strong>森林級榕樹</strong>」。
+      </p>
+      <p class="text-sm text-banyan-800/65">
+        地理歸屬：{place.name} → {place.cityName} → {place.stateProvince} → {place.countryName}
+      </p>
+    </div>
   </section>
 
   <!-- 為什麼值得去 -->
@@ -182,6 +291,29 @@ const routeStops = [
     </div>
   </section>
 
+  <!-- Location & How to Visit（H2 語義結構）-->
+  <section aria-labelledby="visit-title" class="mx-auto max-w-6xl px-4 py-12 md:px-6">
+    <h2 id="visit-title" class="text-3xl font-bold text-banyan-900 md:text-4xl">
+      Location &amp; How to Visit {place.shortName} in {place.cityName}
+    </h2>
+    <p class="mt-4 max-w-3xl leading-relaxed text-banyan-800/85">
+      {place.officialEnglishName} is located in {place.cityName}, {place.stateProvince}, {place.countryNameEn}.
+      Most visitors arrive by scooter or car along Provincial Highway 203,
+      and the site sits next to the iconic Penghu Great Bridge — the landmark arch on the Baisha end.
+    </p>
+  </section>
+
+  <!-- Landmarks & Attractions Around（H2 語義結構）-->
+  <section aria-labelledby="landmarks-title" class="mx-auto max-w-6xl px-4 py-12 md:px-6">
+    <h2 id="landmarks-title" class="text-3xl font-bold text-banyan-900 md:text-4xl">
+      Landmarks &amp; Attractions Around {place.shortName}
+    </h2>
+    <p class="mt-4 max-w-3xl leading-relaxed text-banyan-800/85">
+      Within the Penghu North Loop, travelers can reach <strong>澎湖跨海大橋（Penghu Great Bridge）</strong> in about one minute,
+      and <strong>通樑保安宮（Baoan Temple）</strong> sits directly in front of the banyan.
+    </p>
+  </section>
+
   <!-- 第一次來看什麼 -->
   <section aria-labelledby="first-title" class="bg-sand-100/60">
     <div class="mx-auto max-w-6xl px-4 py-16 md:px-6">
@@ -205,12 +337,32 @@ const routeStops = [
     </div>
   </section>
 
+  <!-- History & Significance of（H2 語義結構）-->
+  <section aria-labelledby="history-title" class="mx-auto max-w-3xl px-4 py-12 md:px-6">
+    <h2 id="history-title" class="text-3xl font-bold text-banyan-900 md:text-4xl">
+      History &amp; Significance of {place.officialEnglishName}
+    </h2>
+    <p class="mt-4 leading-relaxed text-banyan-800/85">
+      地方傳說記載樹齡超過 300 年，部分資料則為 200 多年，皆屬「地方傳說與歷史推測」；
+      唯一可確定的是：<strong>{place.name}</strong> 與 <strong>通樑保安宮</strong>
+      長年共生，已成為通樑村不可分割的一部分。
+    </p>
+  </section>
+
+  <!-- 即時氣象 + 七日預報（伺服器端抓取，前端不顯示介接服務資訊） -->
+  {weatherSnapshot && <WeatherWidget snapshot={weatherSnapshot} />}
+
+  <!-- 季度遊覽策略 -->
+  <div class="bg-sand-100/40">
+    <SeasonalStrategy />
+  </div>
+
   <!-- 深入了解（內部連結） -->
   <section aria-labelledby="explore-title" class="mx-auto max-w-6xl px-4 py-16 md:px-6">
     <div class="mb-10 max-w-2xl">
       <p class="text-sm font-semibold tracking-wide text-temple-700">深入了解</p>
       <h2 id="explore-title" class="mt-2 text-3xl font-bold text-banyan-900 md:text-4xl">
-        規劃你的通樑古榕之旅
+        規劃你的{place.name}之旅
       </h2>
     </div>
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -231,8 +383,31 @@ const routeStops = [
     </div>
   </section>
 
-  <!-- Google Maps -->
+  <!-- Google Maps（含評價區塊） -->
   <GoogleMap />
+
+  <!-- 按人群定制的遊覽方案 -->
+  <div class="bg-sand-100/40">
+    <ItineraryPlans />
+  </div>
+
+  <!-- 訪客服務與周邊設施（中立類型概述） -->
+  <VisitorServices />
+
+  <!-- 權威外部連結（官方觀光局） -->
+  <section aria-labelledby="official-title" class="mx-auto max-w-3xl px-4 pb-12 md:px-6">
+    <h2 id="official-title" class="sr-only">官方旅遊資訊</h2>
+    <p class="text-sm leading-relaxed text-banyan-800/85">
+      For official updates and regional tourism information, visit
+      <a
+        href={place.govtTourismUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-semibold text-temple-700 underline"
+        >{place.countryNameEn} / {place.stateProvince} Official Tourism Portal</a
+      >.
+    </p>
+  </section>
 
   <!-- 北環路線簡版 -->
   <section aria-labelledby="route-title" class="bg-banyan-950 text-sand-50">
@@ -243,7 +418,7 @@ const routeStops = [
           從馬公一路玩到漁翁島
         </h2>
         <p class="mt-3 text-sand-100/85">
-          通樑古榕是北環路線上最自然的休息點，串連跨海大橋與整條西嶼海岸。
+          {place.name}是北環路線上最自然的休息點，串連跨海大橋與整條西嶼海岸。
         </p>
       </div>
       <ol class="flex flex-wrap items-center gap-x-2 gap-y-3 text-sm md:text-base">
@@ -294,6 +469,11 @@ const routeStops = [
       查看全部附近景點 <span aria-hidden="true">→</span>
     </a>
   </section>
+
+  <!-- 科普與訪客責任（緊接 FAQ 之前） -->
+  <div class="bg-sand-100/30">
+    <ScienceEducation />
+  </div>
 
   <!-- FAQ -->
   <section aria-labelledby="faq-title" class="bg-sand-100/60">

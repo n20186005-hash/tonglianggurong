@@ -5,3 +5,8 @@ https://www.tonglianggurong.com/* https://tonglianggurong.com/:splat 301!
 /tongliang-great-banyan/  /  301
 /tongliang-banyan/        /  301
 /tongliang-ancient-tree/  /  301
+
+# 新版主題入口（內部錨點不需要 redirect，但若未來變成獨立頁面可保留）
+/weather/         /#weather-title         301
+/seasonal/        /seasonal-strategy/     301
+/services/        /visitor-services/      301

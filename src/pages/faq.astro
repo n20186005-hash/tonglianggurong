@@ -4,29 +4,120 @@ import PageHeader from "../components/PageHeader.astro";
 import FAQList from "../components/FAQList.astro";
 import RelatedLinks from "../components/RelatedLinks.astro";
 import { faqItems, faqSchema } from "../data/faq";
+import {
+  googleReviews,
+  reviewsEntryUrl,
+  reviewsSourceNote,
+  reviewsButtonLabel,
+} from "../data/reviews";
 
 const breadcrumbs = [
   { name: "首頁", path: "/" },
   { name: "常見問題", path: "/faq/" },
 ];
+
+const ratingStr = googleReviews.rating.toString();
+const [ratingInt, ratingDec] = ratingStr.split(".");
 ---
 
 <BaseLayout
-  title="通樑古榕常見問題"
-  description="通樑古榕常見問題：門票、值不值得去、建議停留時間、是否為同一棵樹、樹齡、無障礙、洗手間、與跨海大橋一起玩、雨天與最新開放狀態查詢。"
+  title="通樑古榕（通梁古榕）常見問題 FAQ｜14 問完整解答"
+  description="通樑古榕（通梁古榕）常見問題：門票、值不值得去、建議停留時間、是否為同一棵樹、樹齡、無障礙、洗手間、與跨海大橋一起玩、雨天與最新開放狀態查詢，共 14 問。"
   path="/faq/"
   breadcrumbs={breadcrumbs}
   schema={faqSchema(faqItems)}
 >
   <PageHeader
     eyebrow="FAQ"
-    title="通樑古榕常見問題"
-    subtitle="門票、停留時間、無障礙、樹齡與雨天安排——出發前最常被問到的問題都在這裡。"
+    title="通樑古榕（通梁古榕）常見問題"
+    subtitle="門票、停留時間、無障礙、樹齡與雨天安排——出發前最常被問到的 14 個問題都在這裡。"
     breadcrumbs={breadcrumbs}
   />
 
   <section class="mx-auto max-w-3xl px-4 py-14 md:px-6">
     <FAQList items={faqItems} />
+  </section>
+
+  <!-- 評價區塊：顯示於頁面，不進入 JSON-LD -->
+  <section class="mx-auto max-w-3xl px-4 pb-12 md:px-6">
+    <aside
+      aria-labelledby="faq-reviews-title"
+      class="rounded-2xl border border-sand-200 bg-white p-5 shadow-sm md:p-6"
+    >
+      <h2 id="faq-reviews-title" class="text-base font-bold text-banyan-900">
+        谷歌地圖用戶評價
+      </h2>
+      <div class="mt-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+        <span class="inline-flex items-baseline gap-0.5 leading-none">
+          <span class="text-4xl font-extrabold text-banyan-900" aria-hidden="true">
+            {ratingInt}
+          </span>
+          {ratingDec && (
+            <span class="text-xl font-bold text-banyan-900" aria-hidden="true">
+              .{ratingDec}
+            </span>
+          )}
+          <span class="ml-1 text-sm font-medium text-banyan-800/70" aria-hidden="true">/ 5</span>
+        </span>
+        <span class="sr-only">
+          Google 地圖評分 {googleReviews.rating} 分（滿分 5 分），共 {googleReviews.reviewCount} 則用戶評價。
+        </span>
+        <span class="inline-flex items-center gap-0.5 text-temple-700" aria-hidden="true">
+          {
+            Array.from({ length: 5 }).map((_, i) => {
+              const v = googleReviews.rating - i;
+              const fill = Math.max(0, Math.min(1, v));
+              return (
+                <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                  <defs>
+                    <linearGradient id={`faq-star-grad-${i}`} x1="0" x2="1" y1="0" y2="0">
+                      <stop offset={`${fill * 100}%`} stop-color="currentColor" />
+                      <stop offset={`${fill * 100}%`} stop-color="#e7dfcb" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M12 17.3l-6.18 3.7 1.64-7.03L2 9.24l7.19-.62L12 2l2.81 6.62L22 9.24l-5.46 4.73L18.18 21z"
+                    fill={`url(#faq-star-grad-${i})`}
+                  />
+                </svg>
+              );
+            })
+          }
+        </span>
+        <span class="text-sm font-medium text-banyan-800/80">
+          {googleReviews.reviewCount.toLocaleString("zh-TW")} 則評價
+        </span>
+      </div>
+
+      <p class="mt-2 text-xs leading-relaxed text-banyan-800/65">
+        評分與評價數同步自谷歌地圖（Google Maps）用戶評價 · {googleReviews.syncMonth} ·
+        <a
+          href={reviewsEntryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="underline hover:text-temple-700"
+          >點擊查看谷歌地圖全部評價↗</a
+        >
+      </p>
+
+      <p class="mt-4 text-sm leading-relaxed text-banyan-800/85">
+        {reviewsSourceNote}
+      </p>
+
+      <div class="mt-5">
+        <a
+          href={reviewsEntryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full bg-banyan-900 px-6 py-3 text-sm font-semibold text-sand-50 transition-colors hover:bg-banyan-800"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2 15 8.5 22 9.6 17 14.3 18.3 21 12 17.8 5.7 21 7 14.3 2 9.6 9 8.5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          {reviewsButtonLabel}
+        </a>
+      </div>
+    </aside>
   </section>
 
   <RelatedLinks

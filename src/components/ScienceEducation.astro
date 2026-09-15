@@ -1,0 +1,100 @@
+---
+/**
+ * 科普與訪客責任
+ *
+ * - 介紹榕樹生態、澎湖氣候、人樹共生等科普知識
+ * - 提供「可以做 / 不要做」的訪客責任清單
+ */
+
+import {
+  knowledgeCards,
+  visitorResponsibilities,
+  knowledgeIcon,
+} from "../data/visitor-guidelines";
+---
+
+<section
+  aria-labelledby="science-title"
+  class="mx-auto max-w-6xl px-4 py-16 md:px-6"
+>
+  <div class="mb-8 max-w-3xl">
+    <p class="text-sm font-semibold tracking-wide text-temple-700">
+      科普與訪客責任
+    </p>
+    <h2
+      id="science-title"
+      class="mt-2 text-3xl font-bold text-banyan-900 md:text-4xl"
+    >
+      了解這棵樹，也尊重這片土地
+    </h2>
+    <p class="mt-3 text-base leading-relaxed text-banyan-800/85">
+      通樑古榕不只是一處景點，而是一個正在與澎湖氣候、人文互動的活體文化資產。
+      下方整理了六個值得理解的主題，以及每位訪客可以實踐的責任守則。
+    </p>
+  </div>
+
+  <!-- 科普卡片 -->
+  <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 list-none p-0">
+    {
+      knowledgeCards.map((c) => {
+        const icon = knowledgeIcon(c.icon);
+        return (
+          <li class="rounded-3xl border border-sand-200 bg-white p-6 shadow-sm">
+            <span
+              class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-leaf-100 text-leaf-700"
+              aria-hidden="true"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path
+                  d={icon.path}
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <h3 class="mt-3 text-lg font-bold text-banyan-900">{c.title}</h3>
+            <p class="mt-1 text-sm font-semibold text-temple-700">
+              {c.summary}
+            </p>
+            <p class="mt-2 text-sm leading-relaxed text-banyan-800/80">
+              {c.body}
+            </p>
+          </li>
+        );
+      })
+    }
+  </ul>
+
+  <!-- 訪客責任清單 -->
+  <div class="mt-12 rounded-3xl border border-sand-200 bg-sand-100/40 p-6 md:p-8">
+    <h3 class="text-2xl font-bold text-banyan-900">訪客責任守則</h3>
+    <p class="mt-2 text-sm text-banyan-800/80">
+      為了讓下一位旅客也享有相同的體驗，請共同守護古榕、廟埕與澎湖環境。
+    </p>
+    <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 list-none p-0">
+      {
+        visitorResponsibilities.map((r) => (
+          <li class="rounded-2xl bg-white p-5 shadow-sm">
+            <h4 class="text-base font-bold text-banyan-900">{r.title}</h4>
+            <p class="mt-2 text-sm">
+              <span class="mr-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-leaf-100 text-leaf-700" aria-hidden="true">
+                ✓
+              </span>
+              <span class="font-semibold text-leaf-700">可以做</span>
+              <span class="ml-1 text-banyan-800/85">{r.do}</span>
+            </p>
+            <p class="mt-2 text-sm">
+              <span class="mr-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-red-100 text-red-700" aria-hidden="true">
+                ✕
+              </span>
+              <span class="font-semibold text-red-700">不要做</span>
+              <span class="ml-1 text-banyan-800/85">{r.dont}</span>
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

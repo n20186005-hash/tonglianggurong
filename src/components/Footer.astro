@@ -2,7 +2,11 @@
 import Logo from "./Logo.astro";
 import { mainNav, footerNav } from "../data/navigation";
 import { place, site } from "../data/place";
+
 const year = new Date().getFullYear();
+
+const imageCopyright =
+  "本網站所展示的所有圖片產權及版權均歸原攝影者所有。";
 ---
 
 <footer class="mt-20 bg-banyan-950 text-sand-100">
@@ -49,7 +53,17 @@ const year = new Date().getFullYear();
       </nav>
     </div>
 
-    <div class="mt-12 rounded-2xl border border-sand-100/15 bg-banyan-900/40 p-5 text-sm text-sand-100/80">
+    <!-- 圖片版權聲明（新增） -->
+    <div
+      class="mt-10 rounded-2xl border border-sand-100/15 bg-banyan-900/40 p-5 text-sm leading-relaxed text-sand-100/85"
+    >
+      <p class="font-semibold text-sand-50">圖片版權說明</p>
+      <p class="mt-1">{imageCopyright}</p>
+    </div>
+
+    <div
+      class="mt-8 rounded-2xl border border-sand-100/15 bg-banyan-900/40 p-5 text-sm text-sand-100/80"
+    >
       開放狀態、即時路況、停車情形與旅客評論可能隨時變動，出發前請透過
       <a
         href={place.googleMapsUrl}

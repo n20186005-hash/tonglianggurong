@@ -125,8 +125,8 @@ const routeStops = [
 ---
 
 <BaseLayout
-  title={`${place.name}（${place.shortName}｜通梁古榕）｜澎湖白沙景點、交通、美食、保安宮與北環行程 | ${place.officialEnglishName}`}
-  description={`${place.name}（通梁古榕，${place.officialEnglishName}）完整遊覽指南：位於澎湖縣白沙鄉通樑村，介紹 95 根氣根形成的獨木成林奇觀、通樑保安宮、交通停車方式、周邊澎湖跨海大橋、仙人掌冰等美食與北環一日遊行程。`}
+  title={`通樑古榕（通梁古榕）｜免費參觀、交通停車與澎湖攻略`}
+  description={`通樑古榕（通梁古榕，Tongliang Great Banyan）位於澎湖縣白沙鄉通樑保安宮前，全天開放、免門票。整理從馬公出發的交通停車、古榕氣根、拍照位置、附近美食與跨海大橋北環行程。`}
   path="/"
   schema={[touristSchema, faqSchema(homeFaq)]}
 >
@@ -192,6 +192,26 @@ const routeStops = [
             查看北環行程
           </a>
         </div>
+
+        <!-- 首屏關鍵資訊（免費、開放時間、停留、所在地） -->
+        <dl class="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <div class="rounded-2xl bg-sand-50/10 px-4 py-3 backdrop-blur-sm">
+            <dt class="text-xs font-semibold tracking-wide text-leaf-300">門票</dt>
+            <dd class="mt-1 text-base font-bold text-sand-50">免費參觀</dd>
+          </div>
+          <div class="rounded-2xl bg-sand-50/10 px-4 py-3 backdrop-blur-sm">
+            <dt class="text-xs font-semibold tracking-wide text-leaf-300">開放時間</dt>
+            <dd class="mt-1 text-base font-bold text-sand-50">全天開放</dd>
+          </div>
+          <div class="rounded-2xl bg-sand-50/10 px-4 py-3 backdrop-blur-sm">
+            <dt class="text-xs font-semibold tracking-wide text-leaf-300">建議停留</dt>
+            <dd class="mt-1 text-base font-bold text-sand-50">20–40 分鐘</dd>
+          </div>
+          <div class="rounded-2xl bg-sand-50/10 px-4 py-3 backdrop-blur-sm">
+            <dt class="text-xs font-semibold tracking-wide text-leaf-300">所在地</dt>
+            <dd class="mt-1 text-base font-bold text-sand-50">澎湖縣白沙鄉</dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>

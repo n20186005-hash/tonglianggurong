@@ -478,9 +478,10 @@ const routeStops = [
       <h2 id="nearby-title" class="mt-2 text-3xl font-bold text-banyan-900 md:text-4xl">
         跨海大橋與西嶼沿線
       </h2>
+      <p class="mt-4 leading-relaxed text-banyan-800/85">從古榕旁的跨海大橋出發，沿北環探訪海蝕拱門、傳統聚落、柱狀玄武岩與歷史燈塔。選擇景點可閱讀歷史、交通、拍照及現場參觀重點。</p>
     </div>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {nearbyPlaces.slice(0, 3).map((p) => <NearbyCard place={p} />)}
+      {nearbyPlaces.map((p) => <NearbyCard place={p} />)}
     </div>
     <a
       href="/nearby-attractions/"

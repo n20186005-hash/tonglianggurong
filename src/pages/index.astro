@@ -155,26 +155,22 @@ const routeStops = [
           {place.name}（{place.officialEnglishName}｜通梁古榕）· {place.cityName}
         </h1>
         <p class="mt-3 text-sm font-semibold tracking-[0.25em] text-leaf-300/85 uppercase">
-          {place.shortName} · Baisha · Penghu · Taiwan
+          {place.shortName} · 白沙鄉 · 澎湖 · 台灣
         </p>
         <p class="mt-6 text-2xl font-semibold text-sand-50 md:text-3xl">
           {place.tagline}
         </p>
         <!-- 4.1 首段等位聲明：將網域語義（短稱）等同於官方全稱 -->
         <p class="mt-4 max-w-xl text-lg leading-relaxed text-sand-100/85">
-          Welcome to <strong class="font-bold text-sand-50">{place.officialEnglishName}</strong>，
-          widely recognized as the central <strong class="font-bold text-sand-50">{place.shortName}</strong>。
-          Located in the heart of <strong class="font-bold text-sand-50">{place.cityName}</strong>，
-          <strong class="font-bold text-sand-50">{place.stateProvince}</strong>，
-          <strong class="font-bold text-sand-50">{place.countryNameEn}</strong>，
-          this destination serves as a primary hub for travelers visiting the region.
+          <strong class="font-bold text-sand-50">{place.name}</strong>（英文名稱：{place.officialEnglishName}，亦稱通梁古榕）
+          位於臺灣<strong class="font-bold text-sand-50">{place.stateProvince}{place.cityName}</strong>通樑村，
+          是澎湖北環最具代表性的古樹景點之一。老榕與保安宮相伴，讓旅客在濃密樹蔭下認識地方信仰與村落生活。
         </p>
         <!-- 4.3 週邊語義集群描述：核心地標 1 / 2 -->
         <p class="mt-3 max-w-xl text-base leading-relaxed text-sand-100/80">
-          When visiting {place.officialEnglishName}, visitors can easily explore surrounding
-          historical landmarks and points of interest, including
+          參觀古榕後，可順路探索附近的
           <strong class="font-semibold text-sand-50">澎湖跨海大橋（Penghu Great Bridge）</strong>
-          and <strong class="font-semibold text-sand-50">通樑保安宮（Baoan Temple）</strong>.
+          與<strong class="font-semibold text-sand-50">通樑保安宮（Baoan Temple）</strong>，再前往西嶼海岸地景。
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a
@@ -234,7 +230,7 @@ const routeStops = [
   <!-- About Tongliang Great Banyan（H2 語義結構）-->
   <section aria-labelledby="about-title" class="mx-auto max-w-3xl px-4 md:px-6">
     <h2 id="about-title" class="text-3xl font-bold text-banyan-900 md:text-4xl">
-      About {place.officialEnglishName}
+      關於通樑古榕（{place.officialEnglishName}）
     </h2>
     <div class="mt-5 space-y-5 text-lg leading-relaxed text-banyan-800/85">
       <p>
@@ -314,23 +310,23 @@ const routeStops = [
   <!-- Location & How to Visit（H2 語義結構）-->
   <section aria-labelledby="visit-title" class="mx-auto max-w-6xl px-4 py-12 md:px-6">
     <h2 id="visit-title" class="text-3xl font-bold text-banyan-900 md:text-4xl">
-      Location &amp; How to Visit {place.shortName} in {place.cityName}
+      通樑古榕在哪裡？交通與參觀方式
     </h2>
     <p class="mt-4 max-w-3xl leading-relaxed text-banyan-800/85">
-      {place.officialEnglishName} is located in {place.cityName}, {place.stateProvince}, {place.countryNameEn}.
-      Most visitors arrive by scooter or car along Provincial Highway 203,
-      and the site sits next to the iconic Penghu Great Bridge — the landmark arch on the Baisha end.
+      通樑古榕位於澎湖縣白沙鄉通樑村，緊鄰澎湖跨海大橋白沙端橋頭。
+      從馬公出發可沿縣道 203 騎車或開車前往，依通樑保安宮及古榕指標抵達；停車後可步行參觀古榕與廟埕。
     </p>
   </section>
 
   <!-- Landmarks & Attractions Around（H2 語義結構）-->
   <section aria-labelledby="landmarks-title" class="mx-auto max-w-6xl px-4 py-12 md:px-6">
     <h2 id="landmarks-title" class="text-3xl font-bold text-banyan-900 md:text-4xl">
-      Landmarks &amp; Attractions Around {place.shortName}
+      通樑古榕周邊地標與景點
     </h2>
     <p class="mt-4 max-w-3xl leading-relaxed text-banyan-800/85">
-      Within the Penghu North Loop, travelers can reach <strong>澎湖跨海大橋（Penghu Great Bridge）</strong> in about one minute,
-      and <strong>通樑保安宮（Baoan Temple）</strong> sits directly in front of the banyan.
+      通樑古榕旁就是<strong>通樑保安宮（Baoan Temple）</strong>，
+      從此處前往<strong>澎湖跨海大橋（Penghu Great Bridge）</strong>橋頭約需一分鐘車程。
+      過橋後可依序遊覽小門鯨魚洞、二崁聚落、柱狀玄武岩與漁翁島燈塔。
     </p>
   </section>
 
@@ -360,7 +356,7 @@ const routeStops = [
   <!-- History & Significance of（H2 語義結構）-->
   <section aria-labelledby="history-title" class="mx-auto max-w-3xl px-4 py-12 md:px-6">
     <h2 id="history-title" class="text-3xl font-bold text-banyan-900 md:text-4xl">
-      History &amp; Significance of {place.officialEnglishName}
+      通樑古榕的歷史與文化意義
     </h2>
     <p class="mt-4 leading-relaxed text-banyan-800/85">
       地方傳說記載樹齡超過 300 年，部分資料則為 200 多年，皆屬「地方傳說與歷史推測」；
@@ -418,13 +414,13 @@ const routeStops = [
   <section aria-labelledby="official-title" class="mx-auto max-w-3xl px-4 pb-12 md:px-6">
     <h2 id="official-title" class="sr-only">官方旅遊資訊</h2>
     <p class="text-sm leading-relaxed text-banyan-800/85">
-      For official updates and regional tourism information, visit
+      參觀前如需核對官方景點資料、交通或最新公告，請參考
       <a
         href={place.govtTourismUrl}
         target="_blank"
         rel="noopener noreferrer"
         class="font-semibold text-temple-700 underline"
-        >{place.countryNameEn} / {place.stateProvince} Official Tourism Portal</a
+        >交通部觀光署官方旅遊資訊</a
       >.
     </p>
   </section>

@@ -45,7 +45,7 @@ export const itineraries: ItineraryPlan[] = [
   {
     id: "family",
     title: "親子家庭路線",
-    subtitle: "Family-friendly Loop",
+    subtitle: "親子同遊路線",
     audience: "5–12 歲孩童、長輩、推嬰兒車",
     totalDuration: "1 小時 30 分鐘",
     distance: "0.6 公里",
@@ -95,7 +95,7 @@ export const itineraries: ItineraryPlan[] = [
   {
     id: "photography",
     title: "攝影自然路線",
-    subtitle: "Photography & Nature Loop",
+    subtitle: "攝影與自然觀察路線",
     audience: "攝影愛好者、自然觀察者",
     totalDuration: "2 小時 30 分鐘",
     distance: "1.2 公里",
@@ -148,7 +148,7 @@ export const itineraries: ItineraryPlan[] = [
   {
     id: "accessibility",
     title: "低體力無障礙路線",
-    subtitle: "Accessibility & Low-Effort Loop",
+    subtitle: "輕鬆慢遊路線",
     audience: "長輩、輪椅使用者、推嬰兒車、孕婦",
     totalDuration: "50 分鐘",
     distance: "0.4 公里",
@@ -194,7 +194,7 @@ export const itineraries: ItineraryPlan[] = [
   {
     id: "half-day",
     title: "半日精華路線",
-    subtitle: "Half-Day Highlight Loop",
+    subtitle: "半日精華路線",
     audience: "行程時間約半天（4 小時以內）",
     totalDuration: "3 小時",
     distance: "8 公里",
@@ -242,7 +242,7 @@ export const itineraries: ItineraryPlan[] = [
   {
     id: "full-day",
     title: "北環全日深度路線",
-    subtitle: "Full-Day North Loop",
+    subtitle: "北環全日路線",
     audience: "行程時間一整天、可彈性停點",
     totalDuration: "8 小時",
     distance: "60 公里",

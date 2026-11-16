@@ -1,6 +1,6 @@
 ---
 title: 使用條款
-eyebrow: Terms
+eyebrow: 使用條款
 subtitle: 使用本站旅遊內容、外部連結與地圖功能前，請先了解以下說明。
 description: 通樑古榕網站使用條款：說明旅遊資訊用途、Google Maps 與外部連結、圖片與文字著作權，以及使用者責任。
 related:

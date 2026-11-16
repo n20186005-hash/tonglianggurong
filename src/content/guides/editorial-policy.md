@@ -1,6 +1,6 @@
 ---
 title: 編輯原則
-eyebrow: Editorial Policy
+eyebrow: 編輯原則
 subtitle: 說明本站如何選擇來源、處理有爭議的說法，並區分穩定資訊與即時資訊。
 description: 通樑古榕網站編輯原則：說明資料來源、事實查核、繁體中文用語、即時資訊處理方式，以及圖片授權與內容更新標準。
 related:

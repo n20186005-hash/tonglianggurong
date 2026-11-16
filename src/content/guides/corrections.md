@@ -1,6 +1,6 @@
 ---
 title: 更正政策
-eyebrow: Corrections
+eyebrow: 更正政策
 subtitle: 若內容有誤或現場狀況已改變，這裡說明如何回報，以及我們如何處理修正。
 description: 通樑古榕網站更正政策：說明內容錯誤回報方式、所需資料、修正原則與即時資訊的查詢建議。
 related:

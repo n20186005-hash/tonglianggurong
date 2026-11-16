@@ -121,7 +121,7 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
 ---
 
 <BaseLayout title={`${place.name}｜歷史特色、交通地圖與北環遊覽指南`} description={`${place.name}（${place.english}）位於${info.location}。了解歷史、特色、參觀重點、拍照位置與從通樑古榕出發的北環交通路線。`} path={path} breadcrumbs={breadcrumbs} schema={schema}>
-  <PageHeader eyebrow="Penghu North Loop · 景點指南" title={place.name} subtitle={`${place.english}｜${visit.subtitle}`} breadcrumbs={breadcrumbs} />
+  <PageHeader eyebrow="澎湖北環 · 景點指南" title={place.name} subtitle={`${place.english}｜${visit.subtitle}`} breadcrumbs={breadcrumbs} />
   <main class="mx-auto max-w-5xl px-4 py-12 md:px-6">
     <div class="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="景點參觀摘要">
       <div class="rounded-2xl border border-sand-200 bg-sand-50 p-4"><p class="text-xs font-bold text-temple-700">遊客評價</p><p class="mt-2 font-semibold text-banyan-900"><a href={mapUrl} target="_blank" rel="noopener noreferrer" class="underline">Google Maps 即時評價 ↗</a></p><p class="mt-1 text-xs text-banyan-800/80">未同步固定評分與評論數</p></div>

@@ -1,0 +1,107 @@
+---
+export const prerender = true;
+
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../../components/PageHeader.astro";
+import RelatedLinks from "../../components/RelatedLinks.astro";
+import { nearbyPlaces } from "../../data/nearby";
+import { site, place as banyan } from "../../data/place";
+
+const details: Record<string, { location: string; type: string; history: string; landscape: string; culture: string; route: string[]; photo: string; caution: string; duration: string }> = {
+  "penghu-great-bridge": {
+    location: "澎湖縣白沙鄉通樑村至西嶼鄉橫礁村之間", type: "跨海橋樑與海峽景觀", duration: "約 15–30 分鐘",
+    history: "澎湖跨海大橋連接白沙與西嶼，讓北環島嶼之間的公路交通更便利。橋體橫跨吼門水道，今日也是北環旅程的代表地標。",
+    landscape: "橋面與海峽兩側的視線開闊；吼門水道海流強勁，適合在安全的觀景位置遠望，不宜冒險靠近水邊。",
+    culture: "橋頭地標與通樑古榕形成一組常見的北環旅遊組合：先在榕蔭下感受村落生活，再欣賞跨海工程與海景。",
+    route: ["先遊通樑古榕與保安宮", "步行或短程移動至橋頭，在安全區域拍地標", "過橋後繼續前往小門鯨魚洞"],
+    photo: "以橋頭拱門作前景、橋身作延伸線條；日照強烈時注意逆光。", caution: "橋上禁止任意停車；拍照請使用合法停車區與人行安全空間。",
+  },
+  "xiaomen-whale-cave": {
+    location: "澎湖縣西嶼鄉小門村、小門嶼", type: "玄武岩海蝕拱門", duration: "約 30–60 分鐘",
+    history: "小門嶼位於西嶼北側，由小門橋與西嶼相連。鯨魚洞是海浪長時間侵蝕玄武岩海崖形成的天然拱門。",
+    landscape: "海蝕作用沿岩石節理與較脆弱部位擴大孔洞，逐步形成如鯨魚輪廓的拱門，是認識澎湖玄武岩海岸的直觀案例。",
+    culture: "小門聚落與漁業海岸景觀相互連接，可把地質觀察和島嶼生活放在同一次散步中。",
+    route: ["由跨海大橋往小門嶼方向行駛", "沿現場指標走向鯨魚洞觀景位置", "返回後可續訪二崁與大菓葉"],
+    photo: "把拱門與海面同框，從步道安全位置捕捉岩石輪廓。", caution: "海風與浪況可能突然變強，不要攀爬海蝕岩壁或越過護欄。",
+  },
+  "daguoye-basalt": {
+    location: "澎湖縣西嶼鄉大菓葉一帶", type: "柱狀玄武岩地質景觀", duration: "約 20–40 分鐘",
+    history: "大菓葉柱狀玄武岩原本部分埋於地表，日治時期開闢附近碼頭時挖掘土石，讓岩壁重新顯露。",
+    landscape: "岩漿冷卻收縮產生規則裂隙，形成密集的柱狀節理；雨後或有積水時，岩柱倒影是受歡迎的觀察角度。",
+    culture: "這片岩壁見證澎湖火山地質與近代交通工程的交會，適合和小門鯨魚洞比較不同的玄武岩地貌。",
+    route: ["從二崁聚落或小門方向抵達", "在指定觀景位置觀察岩柱排列", "繼續向西嶼南端燈塔方向行進"],
+    photo: "以整面岩柱的垂直線條構圖，若有倒影可用低角度取景。", caution: "雨後地面易滑；不要敲打、攀爬或取走岩石。",
+  },
+  "erkan-village": {
+    location: "澎湖縣西嶼鄉二崁村", type: "傳統聚落與閩式民居", duration: "約 45–90 分鐘",
+    history: "二崁聚落保存了澎湖傳統院落與巷弄格局，是認識地方住屋、家族記憶及海島生活方式的重要場域。",
+    landscape: "咾咕石、玄武岩等在地建材反映島嶼的自然條件；牆面、門樓與窄巷呈現傳統建築如何回應強風與日照。",
+    culture: "可觀察傳統古厝的門額、院落與修復細節，也可留意在地飲食與生活工藝；部分建物仍有居民使用。",
+    route: ["於聚落外合法停車處下車", "沿主要巷弄慢行，觀察古厝與公共空間", "預留時間休息，再前往大菓葉地質景點"],
+    photo: "選擇巷道轉角、咾咕石牆與老屋門樓，避開拍攝居民私密空間。", caution: "尊重民宅與商家，未經同意勿擅入庭院或對住戶近距離拍攝。",
+  },
+  "chixi-rock-waterfall": {
+    location: "澎湖縣西嶼鄉池西、小池角海岸一帶", type: "海岸柱狀玄武岩", duration: "約 20–45 分鐘",
+    history: "池西岩瀑又常以小池角柱狀玄武岩之名出現，因柱狀節理沿海崖排列，遠看宛如傾瀉的岩石瀑布。",
+    landscape: "玄武岩柱形與海岸侵蝕共同塑造特殊岩壁。潮位改變時海岸可通行範圍差異大，應以現場封閉與警示為準。",
+    culture: "這裡與大菓葉同屬西嶼玄武岩觀察點，適合比較岩柱傾斜方向、海岸作用與觀景條件。",
+    route: ["出發前確認潮汐與天候", "依現場公告前往安全觀景點", "拍攝岩壁後原路返回，不在漲潮時逗留"],
+    photo: "遠距離拍出岩柱連續排列與海岸的尺度感。", caution: "漲潮、浪高或雨後不宜走入潮間帶；不要將網路照片中的路線當作安全通道。",
+  },
+  "yuwengdao-lighthouse": {
+    location: "澎湖縣西嶼鄉外垵村、西嶼西南端", type: "歷史燈塔與海岬景觀", duration: "約 30–60 分鐘",
+    history: "漁翁島燈塔又稱西嶼燈塔，是台灣早期西式燈塔史的重要見證。航道辨識與海上交通需求，促成了燈塔設施的發展。",
+    landscape: "白色燈塔位在西嶼海岬，草坡與海天線構成開闊景觀；風勢強時需留意帽子與隨身物。",
+    culture: "燈塔串起澎湖海運、航海安全與島嶼聚落的歷史，也是北環行程常見的最南端收尾站。",
+    route: ["自二崁或大菓葉往西嶼南端行駛", "依當日開放公告參觀可進入區域", "在海岬觀景後循原路返回馬公"],
+    photo: "以白色塔身、草坡與海平面分層構圖；傍晚留意返程時間。", caution: "燈塔場域可能有管制時段；請出發前確認最新開放公告。",
+  },
+};
+
+export function getStaticPaths() {
+  return nearbyPlaces.map((place) => ({ params: { slug: place.slug }, props: { place } }));
+}
+
+const { place } = Astro.props;
+const info = details[place.slug];
+const path = `/attractions/${place.slug}/`;
+const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name} 澎湖`)}`;
+const schema = {
+  "@context": "https://schema.org", "@type": "TouristAttraction", name: place.name,
+  alternateName: place.english, description: place.summary,
+  url: `${site.url}${path}`, hasMap: mapUrl,
+  containedInPlace: { "@type": "AdministrativeArea", name: "澎湖縣，台灣" },
+};
+const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path: "/nearby-attractions/" }, { name: place.name, path }];
+---
+
+<BaseLayout title={`${place.name}｜歷史特色、交通地圖與北環遊覽指南`} description={`${place.name}（${place.english}）位於${info.location}。了解歷史、特色、參觀重點、拍照位置與從通樑古榕出發的北環交通路線。`} path={path} breadcrumbs={breadcrumbs} schema={schema}>
+  <PageHeader eyebrow="Penghu North Loop · 景點指南" title={place.name} subtitle={`${place.english}｜${info.type}｜${place.driveFromBanyan}`} breadcrumbs={breadcrumbs} />
+  <main class="mx-auto max-w-5xl px-4 py-12 md:px-6">
+    <div class="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-start">
+      <Image src={place.image} alt={place.alt} widths={[480, 800, 1200]} sizes="(min-width: 768px) 55vw, 100vw" class="w-full rounded-3xl object-cover shadow-sm" />
+      <div class="space-y-5 text-banyan-800 leading-relaxed">
+        <h2 class="text-2xl font-bold text-banyan-900">探索景點</h2>
+        <p>{place.summary}</p><p>{place.suggestion}</p>
+        <div class="flex flex-wrap gap-3"><a class="rounded-full bg-banyan-900 px-5 py-3 font-semibold text-white" href={mapUrl} target="_blank" rel="noopener noreferrer">查看專屬 Google 地圖 ↗</a><a class="rounded-full border border-sand-300 px-5 py-3 font-semibold text-banyan-900" href="/nearby-attractions/">探索周邊景點</a></div>
+        <h3 class="font-bold text-banyan-900">遊覽建議</h3><p>可安排停留 {info.duration}，依當天風勢、交通及個人步行速度調整。</p>
+      </div>
+    </div>
+    <div class="mt-12 grid gap-10 lg:grid-cols-[2fr_1fr]">
+      <div class="space-y-10 leading-relaxed text-banyan-800">
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">關於景點與歷史背景</h2><p>{info.history}</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">建築、地質與文化特色</h2><h3 class="mt-4 font-bold text-banyan-900">自然與景觀</h3><p>{info.landscape}</p><h3 class="mt-4 font-bold text-banyan-900">人文觀察</h3><p>{info.culture}</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">北環遊覽路線</h2><ol class="list-decimal space-y-3 pl-6">{info.route.map((step) => <li>{step}</li>)}</ol></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">拍照機位與參觀須知</h2><p><strong>拍照：</strong>{info.photo}</p><p class="mt-3"><strong>安全提醒：</strong>{info.caution}</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">常見問題</h2><h3 class="mt-3 font-bold">從通樑古榕怎麼安排？</h3><p>{place.driveFromBanyan}，建議與附近景點依路線串遊，避免反覆折返。</p><h3 class="mt-3 font-bold">需要預先查開放時間或門票嗎？</h3><p>戶外景觀與附屬場域的管理規定可能不同，請出發前查詢現場公告；本站不以未經核實的價格或時段作保證。</p></section>
+      </div>
+      <aside class="h-fit rounded-3xl border border-sand-200 bg-sand-50 p-6 text-sm leading-relaxed text-banyan-800">
+        <h2 class="mb-4 text-xl font-bold text-banyan-900">基本資料</h2><dl class="space-y-4"><div><dt class="font-bold">名稱</dt><dd>{place.name} · {place.english}</dd></div><div><dt class="font-bold">所在地</dt><dd>{info.location}，台灣</dd></div><div><dt class="font-bold">景點類型</dt><dd>{info.type}</dd></div><div><dt class="font-bold">建議停留</dt><dd>{info.duration}</dd></div><div><dt class="font-bold">交通</dt><dd>{place.driveFromBanyan}；公車與道路資訊請以當日公告為準。</dd></div></dl>
+        <a class="mt-5 block font-bold text-temple-700 underline" href={mapUrl} target="_blank" rel="noopener noreferrer">在 Google Maps 查看位置與導航 ↗</a>
+        <p class="mt-5 text-xs">資料參考：<a class="underline" href="https://www.penghu-nsa.gov.tw/ChiHoOneLer/tour/ThematicTours/MustIsland/NorthLoop.htm" target="_blank" rel="noopener noreferrer">澎湖國家風景區管理處「經典北環」</a>。內容核對：2026-11-16。</p>
+      </aside>
+    </div>
+  </main>
+  <RelatedLinks title="接著規劃澎湖北環" links={[{label:"通樑古榕主景點",href:"/",desc:"古榕與保安宮"},{label:"附近景點總覽",href:"/nearby-attractions/",desc:"其他北環景點"},{label:"北環一日行程",href:"/north-loop-itinerary/",desc:"順路路線"},{label:"交通與停車",href:"/transportation/",desc:"出發前查詢"}]} />
+</BaseLayout>

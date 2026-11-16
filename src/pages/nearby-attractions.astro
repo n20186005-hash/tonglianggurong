@@ -12,7 +12,7 @@ const breadcrumbs = [
 ---
 
 <BaseLayout
-  title="通樑古榕（通梁古榕）附近景點｜6 大北環地標導覽"
+  title="通樑古榕附近景點｜澎湖北環 6 大景點完整指南與路線"
   description="通樑古榕（通梁古榕）附近景點整理：澎湖跨海大橋、小門鯨魚洞、大菓葉柱狀玄武岩、二崁聚落、池西岩瀑與漁翁島燈塔，共 6 大地標依北環順路順序排列，附 Google Maps 導航與簡要介紹。"
   path="/nearby-attractions/"
   breadcrumbs={breadcrumbs}
@@ -33,6 +33,7 @@ const breadcrumbs = [
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {nearbyPlaces.map((p) => <NearbyCard place={p} />)}
     </div>
+    <p class="mt-8 max-w-3xl text-sm leading-relaxed text-banyan-800/80">每個景點都有獨立的文化或地質介紹、參觀重點、拍攝建議與專屬地圖入口。以下行車時間為行程規劃概估，實際請依交通與天候調整。</p>
   </section>
 
   <RelatedLinks

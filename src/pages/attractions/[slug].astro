@@ -68,6 +68,39 @@ const management: Record<string, { agency: string; text: string; link: string; l
   "yuwengdao-lighthouse": { agency: "交通部航港局", text: "漁翁島燈塔由交通部航港局負責燈塔相關管理及修繕。燈塔最早建於 1778 年，1875 年改建為現存鑄鐵燈塔，是重要的航海與文化資產。航港局於 2026 年完成主體修復並公告重新開放安排；園區細部開放與參觀動線仍應以最新公告和現場指示為準。", link: "https://www.motcmpb.gov.tw/Information/Detail/88ad6b00-bb87-4181-b6e2-7fae98efbc5b?NodeId=15&SiteId=1", linkLabel: "航港局燈塔修復公告" },
 };
 
+const visitorDetails: Record<string, { subtitle: string; address: string; hours: string; ticket: string; access: string; highlights: { title: string; text: string }[]; advice: string[]; extra: string; faq: { question: string; answer: string }[] }> = {
+  "penghu-great-bridge": {
+    subtitle: "跨越吼門水道，走進西嶼的第一道海景", address: "澎湖跨海大橋，白沙鄉通樑村與西嶼鄉橫礁村之間，澎湖縣，台灣", hours: "公路通行依道路交通與臨時管制公告；橋頭觀景位置依現場開放狀況", ticket: "橋頭公共觀景空間一般無獨立門票；周邊其他設施另依公告", access: "通樑古榕與白沙端橋頭相鄰，可先停妥車再步行欣賞橋頭地標；不得在行車道或橋面臨停拍照。",
+    highlights: [{ title: "橋頭拱門", text: "觀察入口拱門與橋身的視覺軸線，是北環最容易辨識的地標構圖。" }, { title: "海峽工程", text: "從安全位置看橋梁跨越水道，理解白沙與西嶼之間的日常交通如何連成一線。" }, { title: "潮流景觀", text: "吼門水道的水流與強風提醒旅客，澎湖的跨海交通始終與自然環境相伴。" }],
+    advice: ["先參觀通樑古榕，再步行到白沙端橋頭", "使用橋頭合法停車區，不在橋上停車", "安排小門鯨魚洞為下一站，避免來回折返"], extra: "這不是只能拍一張拱門照片的地方。把古榕、村落、跨海橋與西嶼海岸連成一段旅程，會更容易理解澎湖北環的地理關係。", faq: [{question:"可以在橋上停車拍照嗎？",answer:"不可以隨意在橋上或行車道停車；請使用合法停車空間，從安全位置拍攝。"},{question:"適合和通樑古榕同遊嗎？",answer:"非常適合。兩處相鄰，古榕與橋頭可作為北環出發的連續兩站。"}]
+  },
+  "xiaomen-whale-cave": {
+    subtitle: "看海浪如何把玄武岩刻成天然拱門", address: "小門鯨魚洞，小門嶼，西嶼鄉小門村，澎湖縣，台灣", hours: "依澎湖國家風景區管理處最新步道封閉及安全公告", ticket: "戶外地景是否收費及鄰近展示設施費用，請查現場公告", access: "過跨海大橋後依小門嶼及鯨魚洞指標行進；先確認通往海蝕拱門的步道是否開放，再從安全觀景區觀看。",
+    highlights: [{title:"海蝕拱門",text:"沿玄武岩弱面長期侵蝕形成開口，從不同角度看出鯨魚般的輪廓。"},{title:"玄武岩海崖",text:"可留意深色岩面、裂隙及海岸侵蝕造成的地貌變化。"},{title:"小門島嶼文化",text:"村落的菜宅、石敢當與漁業生活，讓地質參觀不只停留在岩石本身。"}],
+    advice:["先確認步道與地質景點封閉公告", "沿開放路線往觀景處，不接近落石區", "回程順遊小門聚落或地質展示設施（依開放公告）"], extra:"鯨魚洞與鄰近火山口湖遺跡是澎湖特殊地質教材。岩柱風化與崩落風險是真實存在的，拍攝時保持距離比靠近拱門更重要。",faq:[{question:"鯨魚洞步道一定可以進入嗎？",answer:"不一定。管理處曾發布預警封閉公告，請於出發當日查核最新開放範圍。"},{question:"有什麼地質特色？",answer:"主要是玄武岩海崖受海浪侵蝕形成的海蝕拱門，適合觀察海岸長期變化。"}]
+  },
+  "daguoye-basalt": {
+    subtitle: "岩漿冷卻後留下的整齊石柱森林", address: "大菓葉柱狀玄武岩，西嶼鄉大菓葉，澎湖縣，台灣", hours: "戶外觀賞以現場安全公告及管制為準", ticket: "戶外岩壁一般不設獨立購票入口；如有管理變更以現場公告為準", access: "自縣道 203 過橋進入西嶼，循二崁、大菓葉方向的道路指標抵達；車輛停在合法區域後步行觀賞岩壁。",
+    highlights:[{title:"柱狀節理",text:"岩漿冷卻收縮形成多邊形裂隙，岩柱整齊排列並形成高聳的幾何立面。"},{title:"港口工程記憶",text:"日治時期開闢碼頭挖掘土石，讓原先埋藏的岩壁顯露，是人為工程與地質發現的交會。"},{title:"雨後倒影",text:"岩壁前積水時可能映出石柱影像，是否出現受降雨與現場地況影響。"}],
+    advice:["先在安全觀景區看整幅岩壁", "觀察岩柱形狀與垂直裂隙，不要觸碰鬆動岩體", "與池西岩瀑比較不同排列與海岸侵蝕效果"],extra:"大菓葉的視覺魅力不只是『整齊』。近看可比較不同岩柱的粗細、節理與表面風化，但須在安全距離外觀察，不攀上岩壁。",faq:[{question:"雨後一定有倒影嗎？",answer:"不一定。積水與光線因天候不同而變化，請勿為了拍照走入泥濘或封閉區域。"},{question:"適合與二崁聚落排一起嗎？",answer:"兩者同在西嶼北環路線，可把傳統人文與玄武岩地質放在同一段行程。"}]
+  },
+  "erkan-village": {
+    subtitle: "走進咾咕石古厝與澎湖傳統村落生活", address: "二崁傳統聚落保存區，西嶼鄉二崁村，澎湖縣，台灣", hours: "聚落巷弄與各展館、商店的開放時間不同，以現場公告為準", ticket: "公共巷弄與個別展館、體驗活動的規定可能不同，請各自查詢", access: "由跨海大橋進入西嶼後依二崁聚落指標前往，停車後以步行探訪巷弄；請勿將車輛駛入狹窄居民生活空間。",
+    highlights:[{title:"咾咕石與玄武岩古厝",text:"觀察珊瑚礁石與火山石如何成為牆體材料，呈現海島就地取材的建築智慧。"},{title:"陳姓聚落與院落格局",text:"二崁是典型的傳統聚落，門樓、巷道和院落反映家族聚居與空間使用方式。"},{title:"生活文化展館",text:"部分修復古厝結合常民生活、漢藥、童玩與地方文化展示，開放情況以現場資訊為準。"}],
+    advice:["先從聚落入口認識整體格局", "循主要巷道慢走，細看門額與建材", "選擇有開放標示的展館，尊重居民生活"],extra:"二崁於 2001 年被指定為傳統聚落保存區，特色不只是拍復古建築。古厝修復、社區展館與居民生活共同構成這座活的文化空間。",faq:[{question:"整個聚落都可以隨意進入嗎？",answer:"不可以。公共巷弄可依指標參觀，私人住宅、庭院與未開放建築請勿進入。"},{question:"只拍照需要多久？",answer:"可留約 45–90 分鐘；若參觀展館、飲食與文化展示，建議保留更多彈性。"}]
+  },
+  "chixi-rock-waterfall": {
+    subtitle: "玄武岩柱傾瀉如瀑，潮間帶觀景須看海況", address: "池西柱狀玄武岩／池西岩瀑，西嶼鄉池西村小池角一帶，澎湖縣，台灣", hours: "依潮汐、海浪與現場封閉管制；不等於全天可進入潮間帶", ticket: "戶外海岸是否收費與進入限制依現場管理公告", access: "由西嶼主要道路循池西、小池角方向標示前往。海岸路徑會受潮汐影響，不應直接按網路照片走入潮間帶。",
+    highlights:[{title:"岩瀑輪廓",text:"岩柱沿海崖排列形成傾斜的連續線條，視覺上像岩石瀑布。"},{title:"九孔池舊景",text:"池西海岸曾有養殖池景觀，岩壁與水池的關係是地名和視覺特色的一部分。"},{title:"潮間帶變化",text:"漲退潮改變露出岩面及可見海岸範圍，觀景前應優先看天候與管制資訊。"}],
+    advice:["出發前查潮汐、浪況與最新封閉公告", "從安全高處觀察岩柱輪廓", "不追逐低潮照片中的路線，天候不佳直接改訪其他景點"],extra:"池西岩瀑適合以遠觀理解柱狀玄武岩與海岸地形的關係。海岸地質條件不會因為短暫退潮就變得完全安全。",faq:[{question:"退潮就一定能走到岩壁下嗎？",answer:"不是。岩面、浪高與封閉管制都會影響安全，請依現場警示而非潮汐單一條件判斷。"},{question:"與大菓葉有何不同？",answer:"大菓葉以大面整齊岩柱聞名；池西岩瀑的傾斜岩柱與海岸、水池環境形成不同觀景效果。"}]
+  },
+  "yuwengdao-lighthouse": {
+    subtitle: "走近臺灣早期燈塔與西嶼海岬的航海記憶", address: "漁翁島燈塔（西嶼燈塔），西嶼鄉外垵村西南端，澎湖縣，台灣", hours: "依交通部航港局最新開放時段與修繕管理公告", ticket: "以航港局當期園區公告為準；不以未核實的票價代替現場資訊", access: "沿縣道 203 進入西嶼，續往外垵與燈塔方向。周邊海岬風大，停車後依航港局開放動線入園。",
+    highlights:[{title:"1875 年鑄鐵燈塔",text:"原有燈塔設於 1778 年，現存西式鑄鐵燈塔形制與近代海上航路發展緊密相連。"},{title:"國定古蹟修復",text:"航港局於 2026 年完成燈塔主體修復，保留歷史材料與外觀特徵。"},{title:"海岬視野",text:"白色塔身、草坡及澎湖海峽形成清晰色彩層次，也是北環終點的景觀記憶。"}],
+    advice:["先確認當日園區可進入區域及時段", "依指示觀察塔身與海岬，不跨越管制線", "傍晚拍攝需留足返回馬公的行車時間"],extra:"這座燈塔不只是白色建築，它見證從傳統海上航行到近代航路標識的技術變化。把塔身材質、地理位置與修復歷史連在一起看，更能理解其文化資產價值。",faq:[{question:"燈塔現在可以進入參觀嗎？",answer:"航港局於 2026 年公告修繕完成及重新開放安排，但園區仍可能有局部管制，請以最新公告為準。"},{question:"適合安排在北環最後一站嗎？",answer:"適合。它位於西嶼南端，但仍需預留返程時間並注意海岬風勢。"}]
+  }
+};
+
 export function getStaticPaths() {
   return nearbyPlaces.map((place) => ({ params: { slug: place.slug }, props: { place } }));
 }
@@ -75,6 +108,7 @@ export function getStaticPaths() {
 const { place } = Astro.props;
 const info = details[place.slug];
 const manager = management[place.slug];
+const visit = visitorDetails[place.slug];
 const path = `/attractions/${place.slug}/`;
 const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name} ${info.location}`)}`;
 const schema = {
@@ -87,17 +121,25 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
 ---
 
 <BaseLayout title={`${place.name}｜歷史特色、交通地圖與北環遊覽指南`} description={`${place.name}（${place.english}）位於${info.location}。了解歷史、特色、參觀重點、拍照位置與從通樑古榕出發的北環交通路線。`} path={path} breadcrumbs={breadcrumbs} schema={schema}>
-  <PageHeader eyebrow="Penghu North Loop · 景點指南" title={place.name} subtitle={`${place.english}｜${info.type}｜${place.driveFromBanyan}`} breadcrumbs={breadcrumbs} />
+  <PageHeader eyebrow="Penghu North Loop · 景點指南" title={place.name} subtitle={`${place.english}｜${visit.subtitle}`} breadcrumbs={breadcrumbs} />
   <main class="mx-auto max-w-5xl px-4 py-12 md:px-6">
+    <div class="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="景點參觀摘要">
+      <div class="rounded-2xl border border-sand-200 bg-sand-50 p-4"><p class="text-xs font-bold text-temple-700">遊客評價</p><p class="mt-2 font-semibold text-banyan-900"><a href={mapUrl} target="_blank" rel="noopener noreferrer" class="underline">Google Maps 即時評價 ↗</a></p><p class="mt-1 text-xs text-banyan-800/80">未同步固定評分與評論數</p></div>
+      <div class="rounded-2xl border border-sand-200 bg-sand-50 p-4"><p class="text-xs font-bold text-temple-700">開放資訊</p><p class="mt-2 text-sm font-semibold text-banyan-900">以管理機關公告為準</p></div>
+      <div class="rounded-2xl border border-sand-200 bg-sand-50 p-4"><p class="text-xs font-bold text-temple-700">建議停留</p><p class="mt-2 font-semibold text-banyan-900">{info.duration}</p></div>
+      <div class="rounded-2xl border border-sand-200 bg-sand-50 p-4"><p class="text-xs font-bold text-temple-700">地點導航</p><a class="mt-2 block text-sm font-semibold text-banyan-900 underline" href={mapUrl} target="_blank" rel="noopener noreferrer">{place.name} · 查看地圖 ↗</a></div>
+    </div>
     <div class="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-start">
       <Image src={place.image} alt={place.alt} widths={[480, 800, 1200]} sizes="(min-width: 768px) 55vw, 100vw" class="w-full rounded-3xl object-cover shadow-sm" />
       <div class="space-y-5 text-banyan-800 leading-relaxed">
         <h2 class="text-2xl font-bold text-banyan-900">探索景點</h2>
-        <p>{place.summary}</p><p>{place.suggestion}</p>
+        <p>{place.summary}</p><p>{place.suggestion}</p><p>{visit.extra}</p>
         <div class="flex flex-wrap gap-3"><a class="rounded-full bg-banyan-900 px-5 py-3 font-semibold text-white" href={mapUrl} target="_blank" rel="noopener noreferrer">查看專屬 Google 地圖 ↗</a><a class="rounded-full border border-sand-300 px-5 py-3 font-semibold text-banyan-900" href="/nearby-attractions/">探索周邊景點</a></div>
         <h3 class="font-bold text-banyan-900">遊覽建議</h3><p>可安排停留 {info.duration}，依當天風勢、交通及個人步行速度調整。若從馬公出發，可先在通樑古榕休息，再沿跨海大橋向西嶼串遊。</p>
+        <ul class="list-disc space-y-1 pl-5">{visit.advice.map((tip) => <li>{tip}</li>)}</ul>
       </div>
     </div>
+    <section class="mt-12" aria-labelledby="highlights-title"><h2 id="highlights-title" class="mb-5 text-2xl font-bold text-banyan-900 md:text-3xl">{place.name}的三大景區特色</h2><div class="grid gap-4 md:grid-cols-3">{visit.highlights.map((item) => <article class="rounded-2xl border border-sand-200 bg-white p-6"><h3 class="font-bold text-banyan-900">{item.title}</h3><p class="mt-3 text-sm leading-7 text-banyan-800">{item.text}</p></article>)}</div></section>
     <section class="mt-12 rounded-3xl border border-sand-200 bg-sand-100/60 p-7 md:p-10" aria-labelledby="management-title">
       <p class="text-sm font-semibold tracking-wide text-temple-700">關於景點</p>
       <h2 id="management-title" class="mt-2 text-2xl font-bold text-banyan-900 md:text-3xl">{place.name}的管理與保存</h2>
@@ -107,16 +149,21 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
     </section>
     <div class="mt-12 grid gap-10 lg:grid-cols-[2fr_1fr]">
       <div class="space-y-10 leading-relaxed text-banyan-800">
+        <section aria-labelledby="opening-title"><h2 id="opening-title" class="mb-3 text-2xl font-bold text-banyan-900">開放時間與門票價格</h2><h3 class="mt-4 font-bold text-banyan-900">開放時間</h3><p>{visit.hours}</p><h3 class="mt-4 font-bold text-banyan-900">門票價格</h3><p>{visit.ticket}</p><p class="mt-3 text-sm">不同場域、展館與室外觀景位置可能採不同規則；出發前可先參考<a class="font-bold text-temple-700 underline" href={manager.link} target="_blank" rel="noopener noreferrer">管理單位公告</a>。</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">遊覽亮點與觀察重點</h2><p>{visit.extra}</p><p class="mt-3">{info.landscape}</p></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">關於景點與歷史背景</h2><p>{info.history}</p></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">建築、地質與文化特色</h2><h3 class="mt-4 font-bold text-banyan-900">自然與景觀</h3><p>{info.landscape}</p><h3 class="mt-4 font-bold text-banyan-900">人文觀察</h3><p>{info.culture}</p></section>
-        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">交通方式與行程安排</h2><h3 class="mt-4 font-bold text-banyan-900">自行開車或騎車</h3><p>從馬公市區沿縣道 203 往白沙與跨海大橋方向行進，過橋後依 {place.name} 的 Google Maps 地點導航及現場路標轉入西嶼道路。{place.driveFromBanyan}；行車時間僅為參考，停車請使用合法停車空間。</p><h3 class="mt-4 font-bold text-banyan-900">大眾運輸</h3><p>可先查詢澎湖縣公共車船管理處北環方向公車及站點，再評估是否須步行或轉乘；偏遠海岬與地質景點可能無直達班次，不應假設各站都有公車。</p><a class="font-semibold text-temple-700 underline" href="https://www.phpto.gov.tw/" target="_blank" rel="noopener noreferrer">查詢澎湖公共車船管理處最新班次 ↗</a></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">交通方式與行程安排</h2><h3 class="mt-4 font-bold text-banyan-900">自行開車或騎車</h3><p>從馬公市區沿縣道 203 往白沙與跨海大橋方向行進。{visit.access} {place.driveFromBanyan}；行車時間僅為參考。</p><h3 class="mt-4 font-bold text-banyan-900">大眾運輸</h3><p>可先查詢澎湖縣公共車船管理處北環方向公車及站點，再評估是否須步行或轉乘；偏遠海岬與地質景點可能無直達班次，不應假設各站都有公車。</p><a class="font-semibold text-temple-700 underline" href="https://www.phpto.gov.tw/" target="_blank" rel="noopener noreferrer">查詢澎湖公共車船管理處最新班次 ↗</a></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">北環遊覽路線</h2><ol class="list-decimal space-y-3 pl-6">{info.route.map((step) => <li>{step}</li>)}</ol></section>
-        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">拍照機位與參觀須知</h2><p><strong>拍照：</strong>{info.photo}</p><p class="mt-3"><strong>安全提醒：</strong>{info.caution}</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">遊覽須知</h2><p>{info.caution}</p><p class="mt-3">澎湖海島地形受東北季風、海浪與潮汐影響明顯。請以當日現場標示及管理機關公告為優先，不進入管制區域。</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">拍照機位</h2><p>{info.photo}</p><p class="mt-3">建議先拍攝景點全貌，再觀察建築、岩層或人文細節；請不要為取景跨越護欄或侵犯私人空間。</p></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">住宿與休息建議</h2><p>如要把西嶼地質景點、二崁老聚落及燈塔排成完整一天，可從馬公或白沙住宿地出發，途中依實際營業情況安排飲水、用餐與洗手間。本站不代訂住宿；日落後返程請預留道路照明與交通時間。</p></section>
-        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">常見問題</h2><h3 class="mt-3 font-bold">從通樑古榕怎麼安排？</h3><p>{place.driveFromBanyan}，建議與附近景點依路線串遊，避免反覆折返。</p><h3 class="mt-3 font-bold">需要預先查開放時間或門票嗎？</h3><p>戶外景觀與附屬場域的管理規定可能不同，部分步道亦可能封閉；出發前請查閱管理機關公告。未取得可靠現行資料時，不列出推測票價或固定時段。</p><h3 class="mt-3 font-bold">適合親子與長輩嗎？</h3><p>可優先選擇設有安全觀景空間、停車及休息設施的路段。{place.name} 的實際步道坡度、海風與當日管制狀態仍需出發前確認。</p><h3 class="mt-3 font-bold">哪裡能看遊客評價？</h3><p>可從本頁的 Google Maps 地點連結查看即時使用者評價；本站不轉載或杜撰個別評論與評分。</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">遊客評價與參觀心得</h2><p>想了解其他旅客對 {place.name} 的近期體驗，可以開啟<a class="font-bold text-temple-700 underline" href={mapUrl} target="_blank" rel="noopener noreferrer">此景點 Google Maps 評價頁</a>，查閱最新評分、評論數與訪客照片。本站未取得可核對的同步快照，因此不列固定星等或杜撰評論摘要。</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">常見問題</h2><h3 class="mt-3 font-bold">從通樑古榕怎麼安排？</h3><p>{place.driveFromBanyan}，建議與附近景點依路線串遊，避免反覆折返。</p><h3 class="mt-3 font-bold">需要預先查開放時間或門票嗎？</h3><p>戶外景觀與附屬場域的管理規定可能不同，部分步道亦可能封閉；出發前請查閱管理機關公告。未取得可靠現行資料時，不列出推測票價或固定時段。</p><h3 class="mt-3 font-bold">適合親子與長輩嗎？</h3><p>可優先選擇設有安全觀景空間、停車及休息設施的路段。{place.name} 的實際步道坡度、海風與當日管制狀態仍需出發前確認。</p>{visit.faq.map((item) => <><h3 class="mt-3 font-bold">{item.question}</h3><p>{item.answer}</p></>)}</section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">交通指南、地址與地圖</h2><p><strong>導航目的地：</strong>{visit.address}</p><p class="mt-3">{visit.access}</p><a class="mt-4 inline-block rounded-full bg-banyan-900 px-5 py-3 font-bold text-white" href={mapUrl} target="_blank" rel="noopener noreferrer">開啟 {place.name} 專屬 Google 地圖 ↗</a></section>
       </div>
       <aside class="h-fit rounded-3xl border border-sand-200 bg-sand-50 p-6 text-sm leading-relaxed text-banyan-800">
-        <h2 class="mb-4 text-xl font-bold text-banyan-900">基本資料</h2><dl class="space-y-4"><div><dt class="font-bold">名稱</dt><dd>{place.name} · {place.english}</dd></div><div><dt class="font-bold">所在地</dt><dd>{info.location}，台灣；詳細導航請使用下方對應地點地圖</dd></div><div><dt class="font-bold">景點類型</dt><dd>{info.type}</dd></div><div><dt class="font-bold">建議停留</dt><dd>{info.duration}</dd></div><div><dt class="font-bold">開放時間</dt><dd>依管理機關最新公告；戶外空間與附屬設施可能不同</dd></div><div><dt class="font-bold">門票</dt><dd>請以各設施現場公告為準</dd></div><div><dt class="font-bold">交通</dt><dd>{place.driveFromBanyan}；公車與道路資訊請以當日公告為準。</dd></div></dl>
+        <h2 class="mb-4 text-xl font-bold text-banyan-900">基本資料</h2><dl class="space-y-4"><div><dt class="font-bold">名稱</dt><dd>{place.name} · {place.english}</dd></div><div><dt class="font-bold">地址與定位</dt><dd>{visit.address}</dd></div><div><dt class="font-bold">景點類型</dt><dd>{info.type}</dd></div><div><dt class="font-bold">建議停留</dt><dd>{info.duration}</dd></div><div><dt class="font-bold">開放時間</dt><dd>{visit.hours}</dd></div><div><dt class="font-bold">門票價格</dt><dd>{visit.ticket}</dd></div><div><dt class="font-bold">交通</dt><dd>{place.driveFromBanyan}；公車與道路資訊請以當日公告為準。</dd></div><div><dt class="font-bold">管理與保存</dt><dd>{manager.agency}</dd></div></dl>
         <a class="mt-5 block font-bold text-temple-700 underline" href={mapUrl} target="_blank" rel="noopener noreferrer">在 Google Maps 查看位置與導航 ↗</a>
         <p class="mt-5 text-xs">資料參考：<a class="underline" href="https://www.penghu-nsa.gov.tw/ChiHoOneLer/tour/ThematicTours/MustIsland/NorthLoop.htm" target="_blank" rel="noopener noreferrer">澎湖國家風景區管理處「經典北環」</a>。內容核對：2026-11-16。</p>
       </aside>

@@ -30,6 +30,8 @@ related:
 
 開放狀態、道路施工、停車情形、店家營業狀態與旅客評論都可能變動。本站不固定顯示星級、評論數或即時營業狀態，而是提供 Google Maps 入口，方便旅客在出發前查看當下資訊。
 
+開放狀態、即時路況、停車情形與旅客評論可能隨時變動，出發前請透過 [Google Maps](https://www.google.com/maps/place/Tongliang+Great+Banyan/@23.6566132,119.5570153,17z/data=!3m1!4b1!4m6!3m5!1s0x346c5cb044844859:0xc0b4ebc69bfa29ad!8m2!3d23.6566132!4d119.5570153!16s%2Fg%2F1tj3htfj) 查看最新資訊，並優先遵守現場管理公告。
+
 ## 語言與可讀性
 
 全站採用臺灣繁體中文，專有名詞保留常見異體，例如「通樑古榕」與搜尋時常見的「通梁古榕」。英文名稱使用 Tongliang Great Banyan，品牌識別則使用 Tongliang Gurong。

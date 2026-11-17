@@ -1,0 +1,31 @@
+---
+import ArticleLayout from "../layouts/ArticleLayout.astro";
+import { site } from "../data/place";
+---
+
+<ArticleLayout title="Cookie 設定" eyebrow="網站政策" subtitle="了解 Cookie 類型，並在瀏覽器中管理儲存與追蹤選項。" description="通樑古榕旅遊指南 Cookie 設定：必要 Cookie、第三方服務、封鎖與清除方法。" path="/cookie-settings/" schemaType="WebPage">
+  <p><strong>最後更新：2026 年 11 月 17 日</strong></p>
+  <p>Cookie 是網站或相關服務可能儲存在瀏覽器中的小型資料。本站以提供旅遊資訊為主，不需要會員登入，也不透過 Cookie 提供廣告個人化。本頁說明目前的使用情形和你可以採取的控制方式。</p>
+
+  <h2>本站的 Cookie 類型</h2>
+  <ul>
+    <li><strong>必要性／安全性：</strong>網站託管或安全服務可能使用技術性 Cookie 或類似機制，以辨識異常請求、維持服務穩定。這些功能不一定能在本站單獨關閉。</li>
+    <li><strong>分析與偏好：</strong>本站目前沒有提供會員偏好設定，也不以廣告追蹤 Cookie 建立訪客個人檔案。未來若增加可選的分析或追蹤功能，應先更新本頁說明。</li>
+    <li><strong>第三方內容：</strong>點擊 Google Maps 或其他外部網站後，相關服務可能依自己的 Cookie 政策處理資料；若頁面使用第三方嵌入內容，也可能在載入時發生資料傳送。</li>
+  </ul>
+
+  <h2>如何管理或清除 Cookie</h2>
+  <ol>
+    <li>開啟瀏覽器的「設定」或「隱私權與安全性」。</li>
+    <li>找到「Cookie」、「網站資料」或「追蹤保護」。</li>
+    <li>選擇封鎖第三方 Cookie、清除 <strong>tonglianggurong.com</strong> 的網站資料，或設定瀏覽器於關閉時自動清除。</li>
+    <li>重新整理本站並確認功能是否正常；某些必要的安全性服務可能受到限制。</li>
+  </ol>
+  <p>常見瀏覽器的官方說明可參閱 <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener noreferrer">Chrome</a>、<a href="https://support.mozilla.org/zh-TW/kb/clear-cookies-and-site-data-firefox" target="_blank" rel="noopener noreferrer">Firefox</a> 及 <a href="https://support.apple.com/zh-tw/guide/safari/sfri11471/mac" target="_blank" rel="noopener noreferrer">Safari</a>。</p>
+
+  <h2>是否有站內同意開關？</h2>
+  <p>本站目前沒有啟用需要另行同意的廣告追蹤服務，因此不顯示無實際作用的「接受／拒絕」開關。你可直接使用瀏覽器設定管理 Cookie。若日後加入需要選擇的非必要 Cookie，本站將提供相應控制方式。</p>
+
+  <h2>政策與聯絡</h2>
+  <p>詳細資料處理方式請見 <a href="/privacy-policy/">隱私政策</a>；使用本站的相關規定請見 <a href="/terms-of-service/">服務條款</a>。如有疑問，請寄信 <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>。</p>
+</ArticleLayout>

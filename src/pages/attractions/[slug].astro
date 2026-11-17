@@ -40,7 +40,7 @@ const details: Record<string, { location: string; type: string; history: string;
     history: "二崁聚落保存了澎湖傳統院落與巷弄格局，是認識地方住屋、家族記憶及海島生活方式的重要場域。",
     landscape: "咾咕石、玄武岩等在地建材反映島嶼的自然條件；牆面、門樓與窄巷呈現傳統建築如何回應強風與日照。",
     culture: "可觀察傳統古厝的門額、院落與修復細節，也可留意在地飲食與生活工藝；部分建物仍有居民使用。",
-    route: ["於聚落外合法停車處下車", "沿主要巷弄慢行，觀察古厝與公共空間", "預留時間休息，再前往大菓葉地質景點"],
+    route: ["於聚落外合法停車處下車，先到二崁聚落導覽牌辨識巷弄與聚落格局", "沿公共巷道前往二崁陳家古厝，觀察三進院落、門樓、硓𥑮石與玄武岩牆面", "循開放動線走訪生活文化展示與聚落街巷，預留休息時間後再前往大菓葉地質景點"],
     photo: "選擇巷道轉角、咾咕石牆與老屋門樓，避開拍攝居民私密空間。", caution: "尊重民宅與商家，未經同意勿擅入庭院或對住戶近距離拍攝。",
   },
   "chixi-rock-waterfall": {
@@ -107,7 +107,7 @@ const visitorDetails: Record<string, { subtitle: string; address: string; hours:
   "erkan-village": {
     subtitle: "走進咾咕石古厝與澎湖傳統村落生活", address: "二崁傳統聚落保存區，西嶼鄉二崁村，澎湖縣，台灣", hours: "聚落巷弄與各展館、商店的開放時間不同，以現場公告為準", ticket: "公共巷弄與個別展館、體驗活動的規定可能不同，請各自查詢", access: "由跨海大橋進入西嶼後依二崁聚落指標前往，停車後以步行探訪巷弄；請勿將車輛駛入狹窄居民生活空間。",
     highlights:[{title:"咾咕石與玄武岩古厝",text:"觀察珊瑚礁石與火山石如何成為牆體材料，呈現海島就地取材的建築智慧。"},{title:"陳姓聚落與院落格局",text:"二崁是典型的傳統聚落，門樓、巷道和院落反映家族聚居與空間使用方式。"},{title:"生活文化展館",text:"部分修復古厝結合常民生活、漢藥、童玩與地方文化展示，開放情況以現場資訊為準。"}],
-    advice:["先從聚落入口認識整體格局", "循主要巷道慢走，細看門額與建材", "選擇有開放標示的展館，尊重居民生活"],extra:"二崁於 2001 年被指定為傳統聚落保存區，特色不只是拍復古建築。古厝修復、社區展館與居民生活共同構成這座活的文化空間。",faq:[{question:"整個聚落都可以隨意進入嗎？",answer:"不可以。公共巷弄可依指標參觀，私人住宅、庭院與未開放建築請勿進入。"},{question:"只拍照需要多久？",answer:"可留約 45–90 分鐘；若參觀展館、飲食與文化展示，建議保留更多彈性。"}]
+    advice:["先到二崁聚落導覽牌確認巷弄方向與建築位置", "前往二崁陳家古厝觀察三進式宅第、門額與建材", "選擇有開放標示的展館，尊重居民生活"],extra:"二崁於 2001 年被指定為傳統聚落保存區，特色不只是拍復古建築。古厝修復、社區展館與居民生活共同構成這座活的文化空間。聚落導覽牌可協助辨識街巷；陳家古厝則是理解陳氏家族與閩南傳統建築的重點。",faq:[{question:"整個聚落都可以隨意進入嗎？",answer:"不可以。公共巷弄可依指標參觀，私人住宅、庭院與未開放建築請勿進入。"},{question:"只拍照需要多久？",answer:"可留約 45–90 分鐘；若參觀展館、飲食與文化展示，建議保留更多彈性。"}]
   },
   "chixi-rock-waterfall": {
     subtitle: "玄武岩柱傾瀉如瀑，潮間帶觀景須看海況", address: "池西柱狀玄武岩／池西岩瀑，西嶼鄉池西村小池角一帶，澎湖縣，台灣", hours: "依潮汐、海浪與現場封閉管制；不等於全天可進入潮間帶", ticket: "戶外海岸是否收費與進入限制依現場管理公告", access: "由西嶼主要道路循池西、小池角方向標示前往。海岸路徑會受潮汐影響，不應直接按網路照片走入潮間帶。",
@@ -186,6 +186,28 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
       <a class="mt-4 inline-block text-sm font-bold text-temple-700 underline" href={manager.link} target="_blank" rel="noopener noreferrer">查看主管機關資料：{manager.linkLabel} ↗</a>
     </section>
     <section class="mt-12" aria-labelledby="highlights-title"><h2 id="highlights-title" class="mb-5 text-2xl font-bold text-banyan-900 md:text-3xl">{place.name}的三大景區特色</h2><div class="grid gap-4 md:grid-cols-3">{visit.highlights.map((item) => <article class="rounded-2xl border border-sand-200 bg-white p-6"><h3 class="font-bold text-banyan-900">{item.title}</h3><p class="mt-3 text-sm leading-7 text-banyan-800">{item.text}</p></article>)}</div></section>
+    {place.slug === "erkan-village" && <section class="mt-12" aria-labelledby="erkan-stops-title">
+      <p class="text-sm font-semibold tracking-wide text-temple-700">聚落步行導覽</p>
+      <h2 id="erkan-stops-title" class="mt-2 text-2xl font-bold text-banyan-900 md:text-3xl">二崁聚落兩處值得細看的地標</h2>
+      <p class="mt-4 leading-8 text-banyan-800">第一次走訪二崁，可以先從導覽牌掌握聚落街巷與參觀動線，再步行到陳家古厝觀察傳統宅第。兩處都有獨立的 Google Maps 定位，適合安排在同一段聚落散步中。</p>
+      <div class="mt-6 grid gap-5 md:grid-cols-2">
+        <article class="rounded-2xl border border-sand-200 bg-white p-6">
+          <h3 class="text-xl font-bold text-banyan-900">二崁聚落導覽牌</h3>
+          <p class="mt-1 text-sm text-banyan-800">Erkan Village Information Sign · 歷史地標</p>
+          <p class="mt-4 leading-8 text-banyan-800">建議作為聚落散步的第一站：先辨識村落道路與景點分布，再選擇公共巷弄步行。參觀時可對照現場指示，注意哪些空間屬於居民生活區、哪些展館有自己的開放規定。</p>
+          <p class="mt-3 text-sm text-banyan-800">拍攝建議：記錄導覽資訊後，沿公共步道將聚落巷道與石牆納入畫面，避免擋住他人閱讀指示牌。</p>
+          <a class="mt-5 inline-block font-bold text-temple-700 underline" href="https://maps.app.goo.gl/rsmMC5DWCvZKA66BA" target="_blank" rel="noopener noreferrer">二崁聚落導覽牌 · Google Maps 專屬定位 ↗</a>
+        </article>
+        <article class="rounded-2xl border border-sand-200 bg-white p-6">
+          <h3 class="text-xl font-bold text-banyan-900">二崁陳家古厝</h3>
+          <p class="mt-1 text-sm text-banyan-800">Chen Family Historical House · 傳統閩南宅第</p>
+          <p class="mt-4 leading-8 text-banyan-800">陳家古厝是二崁聚落的代表建築之一。三進式院落反映陳氏家族的居住歷史，牆身使用澎湖常見的硓𥑮石與玄武岩；屋頂、馬背、窗飾及彩繪瓷磚、交趾陶、泥塑等細節，值得從開放區域慢慢觀察。</p>
+          <p class="mt-3 text-sm text-banyan-800">拍攝建議：由合法參觀位置拍攝門面與院落層次，留意建築裝飾與石材肌理；室內或庭院是否能進入，以現場公告為準。</p>
+          <a class="mt-5 inline-block font-bold text-temple-700 underline" href="https://maps.app.goo.gl/SZgxEQh8BG6FpSeZA" target="_blank" rel="noopener noreferrer">二崁陳家古厝 · Google Maps 專屬定位 ↗</a>
+        </article>
+      </div>
+      <p class="mt-4 text-sm leading-7 text-banyan-800">建築資料參考：<a class="font-semibold text-temple-700 underline" href="https://www.taiwan.net.tw/m1.aspx?id=11487&sNo=0001016" target="_blank" rel="noopener noreferrer">交通部觀光署澎湖人文景點介紹 ↗</a>。導覽牌及古厝的導航請分別使用上方地圖連結。</p>
+    </section>}
     <div class="mt-12 grid gap-10 lg:grid-cols-[2fr_1fr]">
       <div class="space-y-10 leading-relaxed text-banyan-800">
         <section aria-labelledby="opening-title"><h2 id="opening-title" class="mb-3 text-2xl font-bold text-banyan-900">開放時間與門票價格</h2><h3 class="mt-4 font-bold text-banyan-900">開放時間</h3><p>{visit.hours}</p><h3 class="mt-4 font-bold text-banyan-900">門票價格</h3><p>{visit.ticket}</p><p class="mt-3 text-sm">不同場域、展館與室外觀景位置可能採不同規則；出發前可先參考<a class="font-bold text-temple-700 underline" href={manager.link} target="_blank" rel="noopener noreferrer">管理單位公告</a>。</p></section>

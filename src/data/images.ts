@@ -13,6 +13,8 @@ import nearbyChixi from "../assets/images/nearby-chixi-1.jpg";
 import nearbyLighthouse from "../assets/images/nearby-lighthouse-1.jpg";
 import nearbyXiyuWestFort from "../assets/images/nearby-xiyu-west-fort-2.jpg";
 import nearbyXiyuEastFort from "../assets/images/nearby-xiyu-east-fort-1.jpg";
+import nearbyBaoanTemple from "../assets/images/nearby-baoan-temple.jpg";
+import nearbyPenghuAquarium from "../assets/images/nearby-penghu-aquarium.jpg";
 
 export const images = {
   heroTempleBanyanAerial,
@@ -30,6 +32,8 @@ export const images = {
   nearbyLighthouse,
   nearbyXiyuWestFort,
   nearbyXiyuEastFort,
+  nearbyBaoanTemple,
+  nearbyPenghuAquarium,
 };
 
 /**
@@ -165,5 +169,21 @@ export const credits: Credit[] = [
     license: "CC BY-SA 3.0",
     licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:%E8%A5%BF%E5%B6%BC%E7%87%88%E5%A1%94(%E6%BC%81%E7%BF%81%E5%B3%B6%E7%87%88%E5%A1%94).jpg",
+  },
+  {
+    key: "nearbyBaoanTemple",
+    caption: "通梁保安宮實景",
+    author: "舟集 Boattoad",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:%E9%80%9A%E6%A2%81%E4%BF%9D%E5%AE%89%E5%AE%AE_(3).jpg",
+  },
+  {
+    key: "nearbyPenghuAquarium",
+    caption: "澎湖水族館建築實景",
+    author: "Issac957",
+    license: "CC BY 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:%E6%BE%8E%E6%B9%96%E6%B0%B4%E6%97%8F%E9%A4%A8.jpg",
   },
 ];

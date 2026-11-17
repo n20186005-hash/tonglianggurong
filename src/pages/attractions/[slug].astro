@@ -8,6 +8,7 @@ import RelatedLinks from "../../components/RelatedLinks.astro";
 import { nearbyPlaces } from "../../data/nearby";
 import { site } from "../../data/place";
 import { tongliangAttractions } from "../../data/tongliangAttractions";
+import { images } from "../../data/images";
 
 const details: Record<string, { location: string; type: string; history: string; landscape: string; culture: string; route: string[]; photo: string; caution: string; duration: string }> = {
   "penghu-great-bridge": {
@@ -168,7 +169,7 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
       <div class="rounded-2xl border border-sand-200 bg-sand-50 p-4"><p class="text-xs font-bold text-temple-700">地點導航</p><a class="mt-2 block text-sm font-semibold text-banyan-900 underline" href={mapUrl} target="_blank" rel="noopener noreferrer">{place.name} · 查看地圖 ↗</a></div>
     </div>
     <div class="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-start">
-      {place.image ? <Image src={place.image} alt={place.alt} widths={[480, 800, 1200]} sizes="(min-width: 768px) 55vw, 100vw" class="w-full rounded-3xl object-cover shadow-sm" /> : <div class="flex min-h-72 flex-col items-center justify-center gap-4 rounded-3xl bg-sand-100 p-8 text-center"><p class="font-semibold text-banyan-900">{place.name} · 實景照片</p><p class="max-w-xs text-sm text-banyan-800">本站尚未取得能核對地點的獨立實景照片，請至專屬地圖查看旅客近期照片。</p><a class="font-bold text-temple-700 underline" href={mapUrl} target="_blank" rel="noopener noreferrer">查看 Google Maps 實景 ↗</a></div>}
+      {place.slug === "tongliang-floating-pier" ? <div class="grid gap-3"><figure><Image src={images.nearbyTongliangFloatingPierRamp} alt="通樑漁港碼頭彩色坡道與防波堤現場照片" widths={[480, 800, 1200]} sizes="(min-width: 768px) 55vw, 100vw" class="max-h-[560px] w-full rounded-3xl object-cover shadow-sm" /><figcaption class="mt-2 text-xs text-banyan-800">彩色坡道與港區堤岸 · Google Maps 地點相片</figcaption></figure><figure><Image src={images.nearbyTongliangFloatingPierHarbor} alt="通樑漁港港池、漁船、碼頭亭廊與聚落房屋實景" widths={[480, 800, 1200]} sizes="(min-width: 768px) 55vw, 100vw" loading="lazy" class="w-full rounded-3xl object-cover shadow-sm" /><figcaption class="mt-2 text-xs text-banyan-800">港池與漁船停泊區 · Google Maps 地點相片</figcaption></figure></div> : place.image ? <Image src={place.image} alt={place.alt} widths={[480, 800, 1200]} sizes="(min-width: 768px) 55vw, 100vw" class="w-full rounded-3xl object-cover shadow-sm" /> : <div class="flex min-h-72 flex-col items-center justify-center gap-4 rounded-3xl bg-sand-100 p-8 text-center"><p class="font-semibold text-banyan-900">{place.name} · 實景照片</p><p class="max-w-xs text-sm text-banyan-800">本站尚未取得能核對地點的獨立實景照片，請至專屬地圖查看旅客近期照片。</p><a class="font-bold text-temple-700 underline" href={mapUrl} target="_blank" rel="noopener noreferrer">查看 Google Maps 實景 ↗</a></div>}
       <div class="space-y-5 text-banyan-800 leading-relaxed">
         <h2 class="text-2xl font-bold text-banyan-900">探索景點</h2>
         <p>{place.summary}</p><p>{place.suggestion}</p><p>{visit.extra}</p>

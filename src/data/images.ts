@@ -19,6 +19,8 @@ import nearbyYuhuangJiushengTemple from "../assets/images/nearby-yuhuang-jiushen
 import nearbyTongliangCommunityPark from "../assets/images/nearby-tongliang-community-park.png";
 import nearbyRapunzelBeacon from "../assets/images/nearby-rapunzel-beacon.jpg";
 import nearbyBaishaSwing from "../assets/images/nearby-baisha-swing.jpg";
+import nearbyTongliangFloatingPierRamp from "../assets/images/nearby-tongliang-floating-pier-ramp.jpg";
+import nearbyTongliangFloatingPierHarbor from "../assets/images/nearby-tongliang-floating-pier-harbor.jpg";
 
 export const images = {
   heroTempleBanyanAerial,
@@ -42,6 +44,8 @@ export const images = {
   nearbyTongliangCommunityPark,
   nearbyRapunzelBeacon,
   nearbyBaishaSwing,
+  nearbyTongliangFloatingPierRamp,
+  nearbyTongliangFloatingPierHarbor,
 };
 
 /**
@@ -57,6 +61,22 @@ export interface Credit {
 }
 
 export const credits: Credit[] = [
+  {
+    key: "nearbyTongliangFloatingPierRamp",
+    caption: "通樑漁港碼頭浮台地點：彩色坡道與港區堤岸實景",
+    author: "Google Maps 地點相片",
+    license: "原始圖片來源",
+    licenseUrl: "https://maps.app.goo.gl/JL8vYY4BJCPPWSgq5",
+    sourceUrl: "https://maps.app.goo.gl/JL8vYY4BJCPPWSgq5",
+  },
+  {
+    key: "nearbyTongliangFloatingPierHarbor",
+    caption: "通樑漁港碼頭浮台地點：港池、漁船與亭廊實景",
+    author: "Google Maps 地點相片",
+    license: "原始圖片來源",
+    licenseUrl: "https://maps.app.goo.gl/JL8vYY4BJCPPWSgq5",
+    sourceUrl: "https://maps.app.goo.gl/JL8vYY4BJCPPWSgq5",
+  },
   {
     key: "nearbyTongliangCommunityPark",
     caption: "通樑社區公園共融式遊具實景",

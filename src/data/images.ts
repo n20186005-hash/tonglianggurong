@@ -15,6 +15,7 @@ import nearbyXiyuWestFort from "../assets/images/nearby-xiyu-west-fort-2.jpg";
 import nearbyXiyuEastFort from "../assets/images/nearby-xiyu-east-fort-1.jpg";
 import nearbyBaoanTemple from "../assets/images/nearby-baoan-temple.jpg";
 import nearbyPenghuAquarium from "../assets/images/nearby-penghu-aquarium.jpg";
+import nearbyYuhuangJiushengTemple from "../assets/images/nearby-yuhuang-jiusheng-temple.jpg";
 
 export const images = {
   heroTempleBanyanAerial,
@@ -34,6 +35,7 @@ export const images = {
   nearbyXiyuEastFort,
   nearbyBaoanTemple,
   nearbyPenghuAquarium,
+  nearbyYuhuangJiushengTemple,
 };
 
 /**
@@ -185,5 +187,13 @@ export const credits: Credit[] = [
     license: "CC BY 3.0",
     licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:%E6%BE%8E%E6%B9%96%E6%B0%B4%E6%97%8F%E9%A4%A8.jpg",
+  },
+  {
+    key: "nearbyYuhuangJiushengTemple",
+    caption: "澎湖通樑玉皇九聖宮正面建築",
+    author: "舟集 Toadboat（紀橋）",
+    license: "CC BY-SA 4.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:%E9%80%9A%E6%A8%91%EF%BC%8E%E7%8E%89%E7%9A%87%E4%B9%9D%E8%81%96%E5%AE%AE_(2).jpg",
   },
 ];

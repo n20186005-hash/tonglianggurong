@@ -57,6 +57,22 @@ const details: Record<string, { location: string; type: string; history: string;
     route: ["自二崁或大菓葉往西嶼南端行駛", "依當日開放公告參觀可進入區域", "在海岬觀景後循原路返回馬公"],
     photo: "以白色塔身、草坡與海平面分層構圖；傍晚留意返程時間。", caution: "燈塔場域可能有管制時段；請出發前確認最新開放公告。",
   },
+  "xiyu-west-fort": {
+    location: "澎湖縣西嶼鄉外垵一帶", type: "國定古蹟與晚清海防砲臺", duration: "約 40–60 分鐘",
+    history: "西嶼西臺是清末加強澎湖海防時興建的砲臺，後因戰略地位而經歷不同時期的軍事使用。1985 年指定為古蹟，成為理解澎湖海峽防衛體系的重要實物史料。",
+    landscape: "砲臺利用地勢、厚實防禦牆、掩蔽空間及砲位配置形成完整的海防場域。觀察各區高低與朝向，可理解如何兼顧視野和防護。",
+    culture: "這裡既是軍事遺產，也是澎湖島嶼生活與戰略位置的歷史見證。與西嶼東臺相比，可看到不同方向的海防部署。",
+    route: ["抵達西臺古堡周邊合法停車空間，先閱讀入口解說", "沿開放動線觀察厚牆、砲座與通道轉折", "在安全觀景位置辨識對海防禦視線，再續行漁翁島燈塔"],
+    photo: "利用防禦牆的斜線引導視線，將砲座與天空納入同框；室內通道注意亮暗差，勿使用會干擾他人的強光。", caution: "部分通道低矮、地面可能潮濕，勿進入封閉或未照明空間；請尊重古蹟構造。",
+  },
+  "xiyu-east-fort": {
+    location: "澎湖縣西嶼鄉西嶼東臺軍事史蹟園區一帶", type: "國定古蹟與海防軍事遺址", duration: "約 40–70 分鐘",
+    history: "西嶼東臺又稱東臺古堡。清光緒年間澎湖因海防需求興建新式砲臺，之後又歷經不同時期的軍事管制。1991 年指定為古蹟，後續經調查研究逐步開放部分區域。",
+    landscape: "東臺的砲位、掩體與防禦空間依地勢設計，轉彎的通道與厚重牆體能降低直接暴露風險。可由地形與建物開口理解防禦角度。",
+    culture: "古堡不只是單一砲座，還與附近東昌營區、其他堡壘構成更廣的軍事史蹟脈絡，反映澎湖海防技術與空間用途的變化。",
+    route: ["先查景區當日局部開放或管制公告", "從開放入口觀察砲臺輪廓與解說牌", "循指示探索可進入的防禦通道和砲座，不擅入舊軍事設施"],
+    photo: "以砲座或通道作前景，對比厚牆與遠方天空；拍攝歷史工事時避免跨過封鎖線。", caution: "古堡可能採局部開放，地下空間濕滑或照明不足；遵守現場標示與管理人員指示。",
+  },
 };
 
 const management: Record<string, { agency: string; text: string; link: string; linkLabel: string }> = {
@@ -66,6 +82,8 @@ const management: Record<string, { agency: string; text: string; link: string; l
   "erkan-village": { agency: "聚落保存由文化資產主管機關與在地社區共同參與", text: "二崁於 2001 年成為臺灣首個傳統聚落保存區。聚落保存涉及公部門文化資產與公共建設工作，修復後的部分古厝由二崁村聚落協進會活化利用。這裡仍是居民生活的聚落，而不只是觀光園區；遊覽時應尊重私人空間與社區文化。", link: "https://www.penghu-nsa.gov.tw/ActivitiesDetailC001210.aspx?Cond=fde39c0a-cfcc-4591-80c9-13d0beadc997", linkLabel: "聚落保存與社區參與資料" },
   "chixi-rock-waterfall": { agency: "交通部觀光署澎湖國家風景區管理處（遊憩安全資訊）", text: "池西岩瀑所在海岸是西嶼柱狀玄武岩地景的一部分。澎湖國家風景區管理處提供地質景區安全提醒，岩壁與潮間帶仍受風化、潮汐和浪況影響。這裡的遊覽核心是從安全位置觀察特殊岩柱，不宜將潮間帶當成固定開放的步道。", link: "https://www.penghu-nsa.gov.tw/ActivitiesDetailC001210.aspx?Cond=251b5e7a-e00f-4d39-ac61-10b0febd346a", linkLabel: "地質景區安全提醒" },
   "yuwengdao-lighthouse": { agency: "交通部航港局", text: "漁翁島燈塔由交通部航港局負責燈塔相關管理及修繕。燈塔最早建於 1778 年，1875 年改建為現存鑄鐵燈塔，是重要的航海與文化資產。航港局於 2026 年完成主體修復並公告重新開放安排；園區細部開放與參觀動線仍應以最新公告和現場指示為準。", link: "https://www.motcmpb.gov.tw/Information/Detail/88ad6b00-bb87-4181-b6e2-7fae98efbc5b?NodeId=15&SiteId=1", linkLabel: "航港局燈塔修復公告" },
+  "xiyu-west-fort": { agency: "文化資產主管機關與澎湖縣政府相關管理單位", text: "西嶼西臺是受文化資產保存制度保護的國定古蹟，保存修復與參觀開放涉及文化資產主管機關及地方管理單位。砲臺保存的目的不僅是讓旅客拍照，更是保護清代海防工程及其與澎湖戰略位置的歷史關係。現場參觀範圍、施工及管制事項以管理機關公告為準。", link: "https://www.penghu-nsa.gov.tw/TravelInformationSceneryDetailC001200.aspx?Cond=50aa3b29-372c-4717-bb60-8eb60699121e&Language=1028", linkLabel: "澎湖國家風景區管理處景點資訊" },
+  "xiyu-east-fort": { agency: "文化資產主管機關及西嶼東臺軍事史蹟園區相關管理單位", text: "西嶼東臺於 1991 年列為國定古蹟，經文化資產調查與軍事設施移交，後續採逐步開放方式供民眾認識歷史。園區包含多處軍事遺址，並非所有通道與建物都可自由進入；請依文化資產及現場管理單位公布的範圍參觀。", link: "https://nchdb.boch.gov.tw/assets/overview/monument/19911123000004", linkLabel: "文化部國家文化資產網" },
 };
 
 const visitorDetails: Record<string, { subtitle: string; address: string; hours: string; ticket: string; access: string; highlights: { title: string; text: string }[]; advice: string[]; extra: string; faq: { question: string; answer: string }[] }> = {
@@ -98,6 +116,16 @@ const visitorDetails: Record<string, { subtitle: string; address: string; hours:
     subtitle: "走近臺灣早期燈塔與西嶼海岬的航海記憶", address: "漁翁島燈塔（西嶼燈塔），西嶼鄉外垵村西南端，澎湖縣，台灣", hours: "依交通部航港局最新開放時段與修繕管理公告", ticket: "以航港局當期園區公告為準；不以未核實的票價代替現場資訊", access: "沿縣道 203 進入西嶼，續往外垵與燈塔方向。周邊海岬風大，停車後依航港局開放動線入園。",
     highlights:[{title:"1875 年鑄鐵燈塔",text:"原有燈塔設於 1778 年，現存西式鑄鐵燈塔形制與近代海上航路發展緊密相連。"},{title:"國定古蹟修復",text:"航港局於 2026 年完成燈塔主體修復，保留歷史材料與外觀特徵。"},{title:"海岬視野",text:"白色塔身、草坡及澎湖海峽形成清晰色彩層次，也是北環終點的景觀記憶。"}],
     advice:["先確認當日園區可進入區域及時段", "依指示觀察塔身與海岬，不跨越管制線", "傍晚拍攝需留足返回馬公的行車時間"],extra:"這座燈塔不只是白色建築，它見證從傳統海上航行到近代航路標識的技術變化。把塔身材質、地理位置與修復歷史連在一起看，更能理解其文化資產價值。",faq:[{question:"燈塔現在可以進入參觀嗎？",answer:"航港局於 2026 年公告修繕完成及重新開放安排，但園區仍可能有局部管制，請以最新公告為準。"},{question:"適合安排在北環最後一站嗎？",answer:"適合。它位於西嶼南端，但仍需預留返程時間並注意海岬風勢。"}]
+  },
+  "xiyu-west-fort": {
+    subtitle: "走入厚重砲臺與隱蔽通道，回望澎湖海防史", address: "西嶼西臺（西臺古堡），澎湖縣西嶼鄉外垵村，台灣", hours: "國定古蹟依管理單位公告開放；修繕、天候或管制可能調整參觀區域", ticket: "票價與是否收費以現場管理公告為準", access: "自通樑古榕經跨海大橋進入西嶼，循西臺古堡或西嶼西臺路標前往；可在合法停車處下車，步行依解說指標參觀。",
+    highlights: [{title:"厚實砲臺牆體",text:"觀察防禦牆的材料、厚度及低矮開口如何抵禦海上火力。"},{title:"砲座與海防方位",text:"從砲位朝向推想昔日監控海峽的視線；僅在開放位置觀察。"},{title:"堡壘通道",text:"牆體內的轉折與遮蔽空間反映晚清海防設計，地面需防滑。"}],
+    advice: ["先由入口解說建立年代與防禦背景", "順著開放路線比較砲座、厚牆和轉折通道", "與西嶼東臺或漁翁島燈塔搭配，觀察軍事及航海設施"], extra: "西臺的空間設計值得慢看：防禦牆、地下掩體及砲位不是獨立物件，而是讓人員、火砲與地形互相配合的一套防衛系統。", faq:[{question:"可以進入所有地下通道嗎？",answer:"不可以。部分空間可能封閉、維修或照明不足，請只走現場明確開放的動線。"},{question:"西臺和東臺有什麼差別？",answer:"兩處都承載晚清海防記憶，但位置、防禦視線與後續軍事使用不同，適合比較。"}]
+  },
+  "xiyu-east-fort": {
+    subtitle: "從清末砲臺到軍事史蹟園區的時代轉換", address: "西嶼東臺（東臺古堡），澎湖縣西嶼鄉，台灣", hours: "園區可能採局部開放；依文化資產與現場管理單位當期公告", ticket: "園區與附屬設施可能有不同參觀規範，請以現場公告為準", access: "從跨海大橋進入西嶼，依西嶼東臺軍事史蹟園區指示前往；進入前先確認可參觀區域及步行動線。",
+    highlights: [{title:"清末砲臺遺構",text:"觀察砲位、厚牆及防禦開口，理解砲臺如何回應海上威脅。"},{title:"軍事空間演變",text:"後期營區與古堡用途交疊，提醒訪客辨識不同年代的建築痕跡。"},{title:"山丘防衛地形",text:"從開放觀景位置理解堡壘與海灣、道路的視線關係。"}],
+    advice: ["出發前查文化資產與園區最新公告", "先看入口年代解說，再循開放路線觀察砲臺配置", "行程可串接西臺，但不要將兩處通道及開放狀態混為一談"], extra: "西嶼東臺與周邊軍事遺址記錄了澎湖防衛設施由清末至近代的變化。其價值不只在巨大的砲座，也在於與周邊營區、道路及海岸視線連成的整體布局。", faq:[{question:"東臺為什麼可能只有部分區域開放？",answer:"因涉及歷史建築修護與軍事遺址安全，現場可能採分區管理，請依最新公告。"},{question:"適合親子參觀嗎？",answer:"適合用來認識歷史，但有階梯、狹窄通道和不平地面；請評估幼兒及長者步行狀況。"}]
   }
 };
 
@@ -110,7 +138,7 @@ const info = details[place.slug];
 const manager = management[place.slug];
 const visit = visitorDetails[place.slug];
 const path = `/attractions/${place.slug}/`;
-const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name} ${info.location}`)}`;
+const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name} ${visit.address}`)}`;
 const schema = {
   "@context": "https://schema.org", "@type": "TouristAttraction", name: place.name,
   alternateName: place.english, description: place.summary,
@@ -139,7 +167,6 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
         <ul class="list-disc space-y-1 pl-5">{visit.advice.map((tip) => <li>{tip}</li>)}</ul>
       </div>
     </div>
-    <section class="mt-12" aria-labelledby="highlights-title"><h2 id="highlights-title" class="mb-5 text-2xl font-bold text-banyan-900 md:text-3xl">{place.name}的三大景區特色</h2><div class="grid gap-4 md:grid-cols-3">{visit.highlights.map((item) => <article class="rounded-2xl border border-sand-200 bg-white p-6"><h3 class="font-bold text-banyan-900">{item.title}</h3><p class="mt-3 text-sm leading-7 text-banyan-800">{item.text}</p></article>)}</div></section>
     <section class="mt-12 rounded-3xl border border-sand-200 bg-sand-100/60 p-7 md:p-10" aria-labelledby="management-title">
       <p class="text-sm font-semibold tracking-wide text-temple-700">關於景點</p>
       <h2 id="management-title" class="mt-2 text-2xl font-bold text-banyan-900 md:text-3xl">{place.name}的管理與保存</h2>
@@ -147,6 +174,7 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
       <p class="mt-4 max-w-4xl leading-8 text-banyan-800">{manager.text}</p>
       <a class="mt-4 inline-block text-sm font-bold text-temple-700 underline" href={manager.link} target="_blank" rel="noopener noreferrer">查看主管機關資料：{manager.linkLabel} ↗</a>
     </section>
+    <section class="mt-12" aria-labelledby="highlights-title"><h2 id="highlights-title" class="mb-5 text-2xl font-bold text-banyan-900 md:text-3xl">{place.name}的三大景區特色</h2><div class="grid gap-4 md:grid-cols-3">{visit.highlights.map((item) => <article class="rounded-2xl border border-sand-200 bg-white p-6"><h3 class="font-bold text-banyan-900">{item.title}</h3><p class="mt-3 text-sm leading-7 text-banyan-800">{item.text}</p></article>)}</div></section>
     <div class="mt-12 grid gap-10 lg:grid-cols-[2fr_1fr]">
       <div class="space-y-10 leading-relaxed text-banyan-800">
         <section aria-labelledby="opening-title"><h2 id="opening-title" class="mb-3 text-2xl font-bold text-banyan-900">開放時間與門票價格</h2><h3 class="mt-4 font-bold text-banyan-900">開放時間</h3><p>{visit.hours}</p><h3 class="mt-4 font-bold text-banyan-900">門票價格</h3><p>{visit.ticket}</p><p class="mt-3 text-sm">不同場域、展館與室外觀景位置可能採不同規則；出發前可先參考<a class="font-bold text-temple-700 underline" href={manager.link} target="_blank" rel="noopener noreferrer">管理單位公告</a>。</p></section>

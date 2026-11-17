@@ -11,6 +11,8 @@ import nearbyErkan from "../assets/images/nearby-erkan-1.jpg";
 import nearbyDaguoye from "../assets/images/nearby-daguoye-1.jpg";
 import nearbyChixi from "../assets/images/nearby-chixi-1.jpg";
 import nearbyLighthouse from "../assets/images/nearby-lighthouse-1.jpg";
+import nearbyXiyuWestFort from "../assets/images/nearby-xiyu-west-fort-2.jpg";
+import nearbyXiyuEastFort from "../assets/images/nearby-xiyu-east-fort-1.jpg";
 
 export const images = {
   heroTempleBanyanAerial,
@@ -26,6 +28,8 @@ export const images = {
   nearbyDaguoye,
   nearbyChixi,
   nearbyLighthouse,
+  nearbyXiyuWestFort,
+  nearbyXiyuEastFort,
 };
 
 /**
@@ -42,6 +46,22 @@ export interface Credit {
 }
 
 export const credits: Credit[] = [
+  {
+    key: "nearbyXiyuWestFort",
+    caption: "西嶼西臺國定古蹟砲臺實景",
+    author: "Venation",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:西嶼西臺_澎湖縣_國定古蹟關塞_Venation_4.JPG",
+  },
+  {
+    key: "nearbyXiyuEastFort",
+    caption: "西嶼東臺古堡實景",
+    author: "Polyxyz",
+    license: "CC BY-SA 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:澎湖西嶼東臺.jpg",
+  },
   {
     key: "heroTempleBanyanAerial",
     caption: "通樑保安宮與古榕空拍全景",

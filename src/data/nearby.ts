@@ -27,7 +27,7 @@ export const nearbyPlaces: NearbyPlace[] = [
     summary:
       "連接白沙與西嶼的地標橋樑，就在通樑古榕旁。西嶼端的橋頭拱門是熱門拍照點，橋下吼門水道流速極快。",
     suggestion: "與通樑古榕安排在一起，停車後步行到橋頭拍照即可。",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Penghu%20Great%20Bridge%20Baisha%20Penghu%20Taiwan",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=%E6%BE%8E%E6%B9%96%E8%B7%A8%E6%B5%B7%E5%A4%A7%E6%A9%8B%20%E7%99%BD%E6%B2%99%E9%84%89%20%E6%BE%8E%E6%B9%96%E7%B8%A3",
   },
   {
     slug: "xiaomen-whale-cave",
@@ -40,7 +40,7 @@ export const nearbyPlaces: NearbyPlace[] = [
     summary:
       "位於西嶼小門嶼的玄武岩海蝕拱門，因外型狀似鯨魚而得名，是欣賞海蝕地形與玄武岩節理的代表點。",
     suggestion: "適合排在跨海大橋之後，步道平緩，來回約 30 分鐘。",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Xiaomen%20Whale%20Cave%20Xiyu%20Penghu%20Taiwan",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=%E5%B0%8F%E9%96%80%E9%AF%A8%E9%AD%9A%E6%B4%9E%20%E8%A5%BF%E5%B6%BC%E9%84%89%20%E6%BE%8E%E6%B9%96%E7%B8%A3",
   },
   {
     slug: "daguoye-basalt",
@@ -53,7 +53,7 @@ export const nearbyPlaces: NearbyPlace[] = [
     summary:
       "整齊排列的柱狀玄武岩壁，退潮時前方積水會倒映岩柱，是澎湖最上鏡的地質景觀之一。",
     suggestion: "清晨與退潮時最美，適合放在西嶼行程中段。",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Daguoye%20Columnar%20Basalt%20Xiyu%20Penghu%20Taiwan",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E8%8F%93%E8%91%89%E6%9F%B1%E7%8B%80%E7%8E%84%E6%AD%A6%E5%B2%A9%20%E8%A5%BF%E5%B6%BC%E9%84%89%20%E6%BE%8E%E6%B9%96%E7%B8%A3",
   },
   {
     slug: "erkan-village",
@@ -66,7 +66,7 @@ export const nearbyPlaces: NearbyPlace[] = [
     summary:
       "保存完整的澎湖傳統聚落，咾咕石與玄武岩砌成的古厝群，巷弄間有杏仁茶、二崁傳香等在地小店。",
     suggestion: "適合放在西嶼行程，慢慢走逛約 1 小時。",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Erkan%20Traditional%20Village%20Xiyu%20Penghu%20Taiwan",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=%E4%BA%8C%E5%B4%81%E5%82%B3%E7%B5%B1%E8%81%9A%E8%90%BD%20%E8%A5%BF%E5%B6%BC%E9%84%89%20%E6%BE%8E%E6%B9%96%E7%B8%A3",
   },
   {
     slug: "chixi-rock-waterfall",
@@ -79,7 +79,7 @@ export const nearbyPlaces: NearbyPlace[] = [
     summary:
       "又稱「小池角柱狀玄武岩」，海崖上的玄武岩柱如瀑布般傾瀉；潮汐、浪高與地形限制，會影響安全觀景範圍。",
     suggestion: "先查潮汐、浪況與封閉公告，只從合法且安全的位置賞景。",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Chixi%20Rock%20Waterfall%20Xiyu%20Penghu%20Taiwan",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=%E6%B1%A0%E8%A5%BF%E5%B2%A9%E7%80%91%20%E5%B0%8F%E6%B1%A0%E8%A7%92%20%E8%A5%BF%E5%B6%BC%E9%84%89%20%E6%BE%8E%E6%B9%96",
   },
   {
     slug: "yuwengdao-lighthouse",
@@ -92,7 +92,7 @@ export const nearbyPlaces: NearbyPlace[] = [
     summary:
       "台灣最早興建的西式燈塔之一，白色塔身佇立在西嶼最南端的草坡上，是北環路線最遠、也最適合收尾的一站。",
     suggestion: "排在北環一日行程最後，傍晚光線柔和最適合拍照。",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Yuwengdao%20Lighthouse%20Xiyu%20Penghu%20Taiwan",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=%E6%BC%81%E7%BF%81%E5%B3%B6%E7%87%88%E5%A1%94%20%E5%A4%96%E5%9E%B5%E6%9D%91%20%E8%A5%BF%E5%B6%BC%E9%84%89%20%E6%BE%8E%E6%B9%96",
   },
   {
     slug: "xiyu-west-fort",
@@ -104,7 +104,7 @@ export const nearbyPlaces: NearbyPlace[] = [
     driveFromBanyan: "位於西嶼南部，可與燈塔安排同遊",
     summary: "清代海防砲臺，利用厚實的石造防禦工事和地下通道守護澎湖海域，是認識晚清軍事建築的代表性國定古蹟。",
     suggestion: "適合預留 40–60 分鐘觀察砲臺、通道與防禦視線，依現場開放路線參觀。",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Xiyu%20Western%20Fort%20Penghu%20Taiwan",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E5%B6%BC%E8%A5%BF%E8%87%BA%20%E5%A4%96%E5%9E%B5%E6%9D%91%20%E6%BE%8E%E6%B9%96%E7%B8%A3",
   },
   {
     slug: "xiyu-east-fort",
@@ -116,6 +116,6 @@ export const nearbyPlaces: NearbyPlace[] = [
     driveFromBanyan: "位於西嶼東側，可串聯軍事史蹟園區",
     summary: "又稱東臺古堡，清代海防砲臺遺構與後續軍事使用痕跡交疊，能從砲座、掩體與空間配置讀懂澎湖的海防變遷。",
     suggestion: "先核對園區開放範圍，沿合法參觀動線比較東臺與西臺的地勢和防禦布局。",
-    mapsUrl: "https://www.google.com/maps/search/?api=1&query=Xiyu%20Eastern%20Fort%20Penghu%20Taiwan",
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E5%B6%BC%E6%9D%B1%E8%87%BA%20%E8%A5%BF%E5%B6%BC%E9%84%89%20%E6%BE%8E%E6%B9%96%E7%B8%A3",
   },
 ];

@@ -138,7 +138,8 @@ const info = details[place.slug];
 const manager = management[place.slug];
 const visit = visitorDetails[place.slug];
 const path = `/attractions/${place.slug}/`;
-const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place.name} ${visit.address}`)}`;
+// 與首頁及周邊總覽卡片共用同一個景點專屬搜尋連結，避免地圖定位不一致。
+const mapUrl = place.mapsUrl;
 const schema = {
   "@context": "https://schema.org", "@type": "TouristAttraction", name: place.name,
   alternateName: place.english, description: place.summary,

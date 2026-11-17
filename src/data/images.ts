@@ -16,6 +16,9 @@ import nearbyXiyuEastFort from "../assets/images/nearby-xiyu-east-fort-1.jpg";
 import nearbyBaoanTemple from "../assets/images/nearby-baoan-temple.jpg";
 import nearbyPenghuAquarium from "../assets/images/nearby-penghu-aquarium.jpg";
 import nearbyYuhuangJiushengTemple from "../assets/images/nearby-yuhuang-jiusheng-temple.jpg";
+import nearbyTongliangCommunityPark from "../assets/images/nearby-tongliang-community-park.png";
+import nearbyRapunzelBeacon from "../assets/images/nearby-rapunzel-beacon.jpg";
+import nearbyBaishaSwing from "../assets/images/nearby-baisha-swing.jpg";
 
 export const images = {
   heroTempleBanyanAerial,
@@ -36,11 +39,13 @@ export const images = {
   nearbyBaoanTemple,
   nearbyPenghuAquarium,
   nearbyYuhuangJiushengTemple,
+  nearbyTongliangCommunityPark,
+  nearbyRapunzelBeacon,
+  nearbyBaishaSwing,
 };
 
 /**
- * 圖片授權資訊。所有照片皆取自 Wikimedia Commons，採用 Creative Commons
- * 授權；依授權條款於「資料來源」頁面標示作者與授權方式。
+ * 圖片來源資訊；逐圖列出攝影來源，避免將非 Commons 照片誤標為 CC 授權。
  */
 export interface Credit {
   key: keyof typeof images;
@@ -52,6 +57,30 @@ export interface Credit {
 }
 
 export const credits: Credit[] = [
+  {
+    key: "nearbyTongliangCommunityPark",
+    caption: "通樑社區公園共融式遊具實景",
+    author: "藍波波 Beautiful Life",
+    license: "原始圖片來源",
+    licenseUrl: "https://bobolife77.com/%E6%BE%8E%E6%B9%96%E5%85%AC%E5%9C%92/",
+    sourceUrl: "https://bobolife77.com/%E6%BE%8E%E6%B9%96%E5%85%AC%E5%9C%92/",
+  },
+  {
+    key: "nearbyRapunzelBeacon",
+    caption: "白沙講美港尾坪嶼燈杆長髮公主彩繪",
+    author: "戚戚的旅行小筆記／微笑台灣",
+    license: "原始圖片來源",
+    licenseUrl: "https://smiletaiwan.cw.com.tw/article/5493",
+    sourceUrl: "https://smiletaiwan.cw.com.tw/article/5493",
+  },
+  {
+    key: "nearbyBaishaSwing",
+    caption: "白沙海園 BAISHA 字樣與海景鞦韆",
+    author: "もっと台湾 motto.tw",
+    license: "原始圖片來源",
+    licenseUrl: "https://motto.tw/spot-penghu-county/tourism/baishahaiyuan.html",
+    sourceUrl: "https://motto.tw/spot-penghu-county/tourism/baishahaiyuan.html",
+  },
   {
     key: "nearbyXiyuWestFort",
     caption: "西嶼西臺國定古蹟砲臺實景",

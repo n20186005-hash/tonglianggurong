@@ -38,6 +38,4 @@ export const footerNav: NavItem[] = [
   { label: "更正政策", href: "/corrections/" },
   { label: "資料來源", href: "/sources/" },
   { label: "聯絡我們", href: "/contact/" },
-  { label: "隱私權政策", href: "/privacy/" },
-  { label: "使用條款", href: "/terms/" },
 ];

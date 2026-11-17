@@ -148,6 +148,7 @@ const visit = visitorDetails[place.slug];
 const path = `/attractions/${place.slug}/`;
 // 與首頁及周邊總覽卡片共用同一個景點專屬搜尋連結，避免地圖定位不一致。
 const mapUrl = place.mapsUrl;
+const isNewTongliangArea = Object.prototype.hasOwnProperty.call(tongliangAttractions, place.slug);
 const schema = {
   "@context": "https://schema.org", "@type": "TouristAttraction", name: place.name,
   alternateName: place.english, description: place.summary,
@@ -172,7 +173,7 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
         <h2 class="text-2xl font-bold text-banyan-900">探索景點</h2>
         <p>{place.summary}</p><p>{place.suggestion}</p><p>{visit.extra}</p>
         <div class="flex flex-wrap gap-3"><a class="rounded-full bg-banyan-900 px-5 py-3 font-semibold text-white" href={mapUrl} target="_blank" rel="noopener noreferrer">查看專屬 Google 地圖 ↗</a><a class="rounded-full border border-sand-300 px-5 py-3 font-semibold text-banyan-900" href="/nearby-attractions/">探索周邊景點</a></div>
-        <h3 class="font-bold text-banyan-900">遊覽建議</h3><p>可安排停留 {info.duration}，依當天風勢、交通及個人步行速度調整。若從馬公出發，可先在通樑古榕休息，再沿跨海大橋向西嶼串遊。</p>
+        <h3 class="font-bold text-banyan-900">遊覽建議</h3><p>可安排停留 {info.duration}，依當天風勢、交通及個人步行速度調整。{isNewTongliangArea ? visit.access : "若從馬公出發，可先在通樑古榕休息，再沿跨海大橋向西嶼串遊。"}</p>
         <ul class="list-disc space-y-1 pl-5">{visit.advice.map((tip) => <li>{tip}</li>)}</ul>
       </div>
     </div>
@@ -190,11 +191,11 @@ const breadcrumbs = [{ name: "首頁", path: "/" }, { name: "附近景點", path
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">遊覽亮點與觀察重點</h2><p>{visit.extra}</p><p class="mt-3">{info.landscape}</p></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">關於景點與歷史背景</h2><p>{info.history}</p></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">建築、地質與文化特色</h2><h3 class="mt-4 font-bold text-banyan-900">自然與景觀</h3><p>{info.landscape}</p><h3 class="mt-4 font-bold text-banyan-900">人文觀察</h3><p>{info.culture}</p></section>
-        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">交通方式與行程安排</h2><h3 class="mt-4 font-bold text-banyan-900">自行開車或騎車</h3><p>從馬公市區沿縣道 203 往白沙與跨海大橋方向行進。{visit.access} {place.driveFromBanyan}；行車時間僅為參考。</p><h3 class="mt-4 font-bold text-banyan-900">大眾運輸</h3><p>可先查詢澎湖縣公共車船管理處北環方向公車及站點，再評估是否須步行或轉乘；偏遠海岬與地質景點可能無直達班次，不應假設各站都有公車。</p><a class="font-semibold text-temple-700 underline" href="https://www.phpto.gov.tw/" target="_blank" rel="noopener noreferrer">查詢澎湖公共車船管理處最新班次 ↗</a></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">交通方式與行程安排</h2><h3 class="mt-4 font-bold text-banyan-900">自行開車或騎車</h3><p>從馬公市區沿縣道 203 往白沙方向行進。{visit.access} {place.driveFromBanyan}；行車時間僅為參考。</p><h3 class="mt-4 font-bold text-banyan-900">大眾運輸</h3><p>可先查詢澎湖縣公共車船管理處北環方向公車及站點，再評估是否須步行或轉乘；{isNewTongliangArea ? "部分通樑村內景點適合步行串聯，水族館則請確認岐頭水族館站及班次。" : "偏遠海岬與地質景點可能無直達班次，不應假設各站都有公車。"}</p><a class="font-semibold text-temple-700 underline" href="https://www.phpto.gov.tw/" target="_blank" rel="noopener noreferrer">查詢澎湖公共車船管理處最新班次 ↗</a></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">北環遊覽路線</h2><ol class="list-decimal space-y-3 pl-6">{info.route.map((step) => <li>{step}</li>)}</ol></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">遊覽須知</h2><p>{info.caution}</p><p class="mt-3">澎湖海島地形受東北季風、海浪與潮汐影響明顯。請以當日現場標示及管理機關公告為優先，不進入管制區域。</p></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">拍照機位</h2><p>{info.photo}</p><p class="mt-3">建議先拍攝景點全貌，再觀察建築、岩層或人文細節；請不要為取景跨越護欄或侵犯私人空間。</p></section>
-        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">住宿與休息建議</h2><p>如要把西嶼地質景點、二崁老聚落及燈塔排成完整一天，可從馬公或白沙住宿地出發，途中依實際營業情況安排飲水、用餐與洗手間。本站不代訂住宿；日落後返程請預留道路照明與交通時間。</p></section>
+        <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">住宿與休息建議</h2><p>{isNewTongliangArea ? `參訪${place.name}可視停留時間從馬公或白沙出發；短程景點不需要專程住宿。請先查附近洗手間、飲水與餐飲的實際營業情況。` : "如要把西嶼地質景點、二崁老聚落及燈塔排成完整一天，可從馬公或白沙住宿地出發，途中依實際營業情況安排飲水、用餐與洗手間。"} 本站不代訂住宿；日落後返程請預留道路照明與交通時間。</p></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">遊客評價與參觀心得</h2><p>想了解其他旅客對 {place.name} 的近期體驗，可以開啟<a class="font-bold text-temple-700 underline" href={mapUrl} target="_blank" rel="noopener noreferrer">此景點 Google Maps 評價頁</a>，查閱最新評分、評論數與訪客照片。本站未取得可核對的同步快照，因此不列固定星等或杜撰評論摘要。</p></section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">常見問題</h2><h3 class="mt-3 font-bold">從通樑古榕怎麼安排？</h3><p>{place.driveFromBanyan}，建議與附近景點依路線串遊，避免反覆折返。</p><h3 class="mt-3 font-bold">需要預先查開放時間或門票嗎？</h3><p>戶外景觀與附屬場域的管理規定可能不同，部分步道亦可能封閉；出發前請查閱管理機關公告。未取得可靠現行資料時，不列出推測票價或固定時段。</p><h3 class="mt-3 font-bold">適合親子與長輩嗎？</h3><p>可優先選擇設有安全觀景空間、停車及休息設施的路段。{place.name} 的實際步道坡度、海風與當日管制狀態仍需出發前確認。</p>{visit.faq.map((item) => <><h3 class="mt-3 font-bold">{item.question}</h3><p>{item.answer}</p></>)}</section>
         <section><h2 class="mb-3 text-2xl font-bold text-banyan-900">交通指南、地址與地圖</h2><p><strong>導航目的地：</strong>{visit.address}</p><p class="mt-3">{visit.access}</p><a class="mt-4 inline-block rounded-full bg-banyan-900 px-5 py-3 font-bold text-white" href={mapUrl} target="_blank" rel="noopener noreferrer">開啟 {place.name} 專屬 Google 地圖 ↗</a></section>
